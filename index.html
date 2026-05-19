@@ -3,19 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training | Coach Sequeira</title>
+    <title>Coach Sequeira | Elite Performance</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script>
-        tailwind.config = { theme: { extend: { colors: { 'graphite': '#353535', 'charcoal': '#3B4A37', 'battleship': '#828182', 'pure-white': '#FFFFFF' }, fontFamily: { euro: ['Eurostile', 'sans-serif'], 'euro-extd': ['Eurostile Extended', 'sans-serif'] } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'graphite': '#353535',     
+                        'charcoal': '#3B4A37',     
+                        'battleship': '#828182',   
+                        'aluminium': '#ADADAD',    
+                        'pure-white': '#FFFFFF'    
+                    },
+                    fontFamily: { 
+                        euro: ['Eurostile', 'sans-serif'], 
+                        'euro-extd': ['Eurostile Extended', 'sans-serif'] 
+                    }
+                }
+            }
+        }
     </script>
+
     <style>
-        @font-face { font-family: 'Eurostile'; src: url('fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
-        @font-face { font-family: 'Eurostile Extended'; src: url('fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
-        body { background-color: #FFFFFF; color: #353535; font-family: 'Eurostile', sans-serif; overflow-x: hidden; }
-        .logo-wordmark { font-family: 'Eurostile Extended', sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
-        .btn-militar { position: relative; padding: 15px 40px; background: #3B4A37; color: #FFFFFF; font-family: 'Eurostile Extended', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: all 0.4s; display: inline-block; }
-        .btn-militar:hover { background: #353535; transform: scale(1.02); }
+        /* FONTES */
+        @font-face {
+            font-family: 'Eurostile';
+            src: url('fonts/Eurostile-Regular.woff2') format('woff2'), url('fonts/Eurostile-Regular.ttf') format('truetype');
+            font-weight: 400; font-style: normal;
+        }
+        @font-face {
+            font-family: 'Eurostile Extended';
+            src: url('fonts/EurostileExtended-Black.woff2') format('woff2'), url('fonts/EurostileExtended-Black.ttf') format('truetype');
+            font-weight: 900; font-style: normal;
+        }
+
+        body { background-color: #FFFFFF; color: #353535; overflow-x: hidden; font-family: 'Eurostile', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        
+        .logo-wordmark { font-family: 'Eurostile Extended', sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+
+        /* CONFIGURAÇÃO DA SECTION EXPERIENCE */
+        #experience {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* EFEITO MARQUEE TEXTO DUPLO BACKGROUND (CRUZADO) */
+        .bg-marquee-container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4vh;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.12;
+            mix-blend-mode: multiply;
+        }
+
+        .marquee-row {
+            display: flex;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .marquee-row-content {
+            display: flex;
+            gap: 40px;
+            font-family: 'Eurostile Extended', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 8rem;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        /* Animações de Direção */
+        .animate-ltr { animation: marquee-move-ltr 45s linear infinite; }
+        .animate-rtl { animation: marquee-move-rtl 45s linear infinite; }
+
+        @keyframes marquee-move-ltr {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes marquee-move-rtl {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Alternância de cores baseada na paleta existente */
+        .text-c-verde { color: #3B4A37; }
+        .text-c-cinzento { color: #828182; }
+
+        /* ESTILOS MARQUEE PATROCÍNIOS */
+        .marquee-sponsors { display: flex; width: 100%; overflow: hidden; user-select: none; padding: 40px 0; background: #f9f9f9; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .marquee-content { display: flex; gap: 100px; animation: scroll-sponsors-ltr 20s linear infinite; }
+        @keyframes scroll-sponsors-ltr {
+            from { transform: translateX(-50%); } 
+            to { transform: translateX(0); }     
+        }
+        .sponsor-logo { height: 60px; width: auto; filter: grayscale(100%) opacity(0.6); transition: all 0.4s ease; object-fit: contain; }
+        .sponsor-logo:hover { filter: grayscale(0%) opacity(1); }
+
+        /* EFEITOS E BOTOES */
+        #hero-title-container { perspective: 1000px; transform-style: preserve-3d; }
+        .horizontal-wrapper { display: flex; width: fit-content; flex-wrap: nowrap; }
+
+        .btn-militar { position: relative; padding: 15px 40px; background: #3B4A37; color: #FFFFFF; font-family: 'Eurostile Extended', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; overflow: hidden; transition: all 0.4s; z-index: 10; display: inline-block; cursor: pointer; }
+        .btn-militar:hover { background: #353535; transform: scale(1.05); box-shadow: 0 10px 30px rgba(59, 74, 55, 0.2); }
+        .social-link { transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; color: #353535; }
+        .social-link:hover { color: #3B4A37; transform: translateY(-3px); }
+
+        /* ATLETAS - ANIMAÇÃO HORIZONTAL */
+        .athlete-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255, 255, 255, 0.05); } 
+        .athlete-card:hover { border-color: #3B4A37; box-shadow: 0 25px 50px -12px rgba(59, 74, 55, 0.4); }
+        .athlete-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6rem; color: rgba(255,255,255,0.02); font-family: 'Eurostile Extended'; z-index: 0; transition: all 0.5s ease; pointer-events: none; }
+        @media (min-width: 768px) { .athlete-bg-text { font-size: 8rem; } }
+        .athlete-card:hover .athlete-bg-text { color: rgba(59, 74, 55, 0.1); transform: translate(-50%, -50%) scale(1.1) rotate(-3deg); }
+        .athlete-card img { position: relative; z-index: 1; transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .athlete-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
+        .athlete-info { transform: translateY(20px); opacity: 0; transition: all 0.4s ease-out 0.1s; z-index: 2; background: linear-gradient(180deg, transparent 0%, rgba(53, 53, 53, 0.95) 100%); }
+        .athlete-card:hover .athlete-info { transform: translateY(0); opacity: 1; }
+
+        /* ACORDEÃO DAS ABAS */
         .accordion-item { border-bottom: 1px solid rgba(53, 53, 53, 0.1); }
         .accordion-header { cursor: pointer; transition: all 0.3s ease; }
         .accordion-header:hover { color: #3B4A37; }
@@ -24,24 +142,18 @@
         .accordion-active .icon-cross { transform: rotate(45deg); color: #3B4A37; }
         .video-container:hover .play-btn { transform: scale(1.1); background-color: #3B4A37; color: #FFFFFF; }
 
-        /* Efeito de Movimento Infinito (Marquee) */
-        @keyframes marqueeLTR {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0%); }
-        }
-        @keyframes marqueeRTL {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee-ltr {
-            display: flex;
-            width: max-content;
-            animation: marqueeLTR 30s linear infinite;
-        }
-        .animate-marquee-rtl {
-            display: flex;
-            width: max-content;
-            animation: marqueeRTL 25s linear infinite;
+        /* SISTEMA SPA */
+        .page-view { display: none; opacity: 0; transition: opacity 0.4s ease; }
+        .page-view.active { display: block; opacity: 1; }
+
+        /* EFEITO NOISE/GRAIN PREMIUM PARA FOTOGRAFIA */
+        .noise-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
     </style>
 </head>
@@ -49,16 +161,440 @@
 
     <header class="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur-md border-b border-graphite/5">
         <div class="max-w-[1800px] mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="logo-wordmark text-2xl flex items-center gap-2">
-                <span class="text-graphite">COACH</span><span class="text-charcoal">SEQUEIRA</span>
+            <a href="#" onclick="showView('main-view')" class="logo-wordmark text-2xl flex items-center gap-2 cursor-pointer">
+                <span class="text-graphite">COACH</span>
+                <span class="text-charcoal">SEQUEIRA</span>
             </a>
-            <nav class="flex gap-10 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
-                <a href="index.html#services" class="text-graphite hover:text-charcoal transition-colors flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i> Voltar</a>
+            
+            <nav id="main-nav" class="hidden md:flex gap-10 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
+                <a href="#home" class="text-graphite hover:text-charcoal transition-colors">Home</a>
+                <a href="#experience" class="text-graphite hover:text-charcoal transition-colors">Experience</a>
+                <a href="#athletes-gallery" class="text-graphite hover:text-charcoal transition-colors">Team</a>
+                <a href="#services" class="text-graphite hover:text-charcoal transition-colors">Join the Team</a>
+                <a href="#achievements" class="text-charcoal font-bold">Achievements</a>
+            </nav>
+
+            <nav id="back-nav" class="hidden gap-10 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
+                <a onclick="showView('main-view')" class="text-graphite hover:text-charcoal transition-colors cursor-pointer flex items-center">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
+                </a>
             </nav>
         </div>
     </header>
 
-    <main class="pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
+    <div id="main-view" class="page-view active">
+        <main>
+            <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden bg-white">
+                <div class="absolute inset-0 flex flex-col items-center justify-center select-none pointer-events-none z-0 px-6">
+                    <img src="img/simbolo.svg" class="w-[65vw] md:w-[35vw] h-auto opacity-25 object-contain mb-4" alt="Símbolo Emblema Background">
+                    <p class="text-[2.2vw] md:text-[1.1vw] font-euro-extd font-black tracking-[0.6em] text-graphite/40 uppercase">THIS IS HOW WE WORK.</p>
+                </div>
+                
+                <div id="hero-title-container" class="relative z-10 text-center flex flex-col items-center pointer-events-none">
+                    <div id="hero-title" class="flex flex-col items-center">
+                        <img src="img/logoprincipal.svg" class="layer w-[80vw] md:w-[45vw] h-auto drop-shadow-2xl" data-speed="40" alt="Logo Principal">
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="relative h-screen w-full flex items-center justify-center bg-white border-t border-graphite/5 z-20">
+                <div class="bg-marquee-container">
+                    <div class="marquee-row">
+                        <div class="marquee-row-content animate-ltr">
+                            <span class="text-c-verde">COACH SEQUEIRA</span> <span class="text-c-cinzento">•</span>
+                            <span class="text-c-cinzento">COACH SEQUEIRA</span> <span class="text-c-verde">•</span>
+                            <span class="text-c-verde">COACH SEQUEIRA</span> <span class="text-c-cinzento">•</span>
+                            <span class="text-c-cinzento">COACH SEQUEIRA</span> <span class="text-c-verde">•</span>
+                        </div>
+                    </div>
+                    <div class="marquee-row">
+                        <div class="marquee-row-content animate-rtl">
+                            <span class="text-c-cinzento">EFFORT IS THE BEST TALENT</span> <span class="text-c-verde">•</span>
+                            <span class="text-c-verde">EFFORT IS THE BEST TALENT</span> <span class="text-c-cinzento">•</span>
+                            <span class="text-c-cinzento">EFFORT IS THE BEST TALENT</span> <span class="text-c-verde">•</span>
+                            <span class="text-c-verde">EFFORT IS THE BEST TALENT</span> <span class="text-c-cinzento">•</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="photo-mask" class="relative z-10 w-full h-full flex items-center justify-center">
+                    <div class="relative w-full h-full overflow-hidden bg-aluminium">
+                        <img id="main-img" src="img/DSCF0648-13.jpg" class="w-full h-full object-cover grayscale opacity-90 scale-110 mix-blend-multiply">
+                        <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <div class="logo-wipe-reveal w-[25%] md:w-[15%]" style="clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); opacity: 0.95;">
+                                <img src="img/simboloverde.svg" class="w-full object-contain filter drop-shadow-xl" alt="Símbolo Oficial">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="exp-text-container" class="absolute bottom-10 text-center z-30 opacity-0">
+                    <p class="font-euro-extd text-3xl md:text-5xl uppercase italic tracking-widest text-graphite">
+                        Effort is the best <span class="text-charcoal">Talent.</span>
+                    </p>
+                </div>
+            </section>
+
+            <section id="athletes-gallery" class="bg-graphite overflow-hidden border-t border-graphite/10 relative z-20">
+                <div class="athletes-horizontal-wrapper h-screen flex items-center">
+                    <div class="flex-shrink-0 px-12 md:px-24">
+                        <h2 class="text-[8vw] font-euro-extd italic leading-none uppercase tracking-tighter text-pure-white">
+                            TEAM <br><span class="text-charcoal">SEQUEIRA</span>
+                        </h2>
+                    </div>
+                    
+                    <div class="athletes-cards-container flex gap-10 md:gap-16 pr-[50vw]">
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">PRO</span>
+                            <img src="img/atleta_01.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 01">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Evolution</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 01</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm mt-12">
+                            <span class="athlete-bg-text">PREP</span>
+                            <img src="img/atleta_02.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 02">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Contest Prep</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 02</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">ELITE</span>
+                            <img src="img/atleta_03.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 03">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Lifestyle Elite</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 03</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm mt-12">
+                            <span class="athlete-bg-text">GAIN</span>
+                            <img src="img/atleta_04.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 04">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Hypertrophy</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 04</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">SHRED</span>
+                            <img src="img/atleta_05.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 05">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Cutting Phase</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 05</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm mt-12">
+                            <span class="athlete-bg-text">PEAK</span>
+                            <img src="img/atleta_06.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 06">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Stage Ready</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 06</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">FORM</span>
+                            <img src="img/atleta_07.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 07">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Front Pose</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 07</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm mt-12">
+                            <span class="athlete-bg-text">BUILD</span>
+                            <img src="img/atleta_08.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 08">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Body Recomp</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 08</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">RISE</span>
+                            <img src="img/atleta_09.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 09">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Young Lion</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 09</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm mt-12">
+                            <span class="athlete-bg-text">STAGE</span>
+                            <img src="img/atleta_10.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 10">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Competition Ready</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 10</h3>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] md:w-[420px] flex-shrink-0 athlete-card relative aspect-square bg-graphite/50 overflow-hidden cursor-pointer group shadow-2xl rounded-sm">
+                            <span class="athlete-bg-text">GROW</span>
+                            <img src="img/atleta_11.jpg" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700" alt="Transformação Atleta 11">
+                            <div class="athlete-info absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-graphite/95 via-graphite/70 to-transparent pt-16">
+                                <p class="font-euro text-charcoal text-[11px] font-black uppercase tracking-[0.4em] mb-2 opacity-80">Foundation</p>
+                                <h3 class="font-euro-extd text-2xl md:text-4xl text-pure-white italic uppercase tracking-tighter">Atleta 11</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sponsors" class="bg-white relative z-20">
+                <p class="text-center font-euro text-[10px] font-black uppercase tracking-[0.5em] text-battleship pt-10">Partner Brands</p>
+                <div class="marquee-sponsors">
+                    <div class="marquee-content">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Higia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Higia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Higia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Hygia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Hygia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                        <img src="img/hygia projeto sequeira.png" class="sponsor-logo" alt="Hygia Training Club">
+                        <img src="img/my protein projeto sequeira.webp" class="sponsor-logo" alt="MyProtein">
+                    </div>
+                </div>
+            </section>
+
+         <section id="services" class="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-white border-t border-graphite/5 z-10">
+    <div class="relative z-10 max-w-4xl text-center mb-20">
+        <h2 class="text-5xl md:text-8xl font-euro-extd italic uppercase text-graphite mb-6">Start Your <span class="text-charcoal">Evolution</span></h2>
+        <p class="font-euro text-battleship text-sm md:text-base uppercase tracking-[0.4em] font-bold">Personalized Coaching & High Performance Strategy.</p>
+        <div class="mt-12">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzwS649P4LR_sxz3P9ZDJu1nzMa3kJE1iU1fqkMIM_GfKILA/viewform" target="_blank" class="btn-militar inline-block">Application Form</a>
+        </div>
+    </div>
+    
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-6xl">
+        <a href="service/training.html" class="block p-12 bg-pure-white border border-graphite/5 shadow-xl text-center hover:border-charcoal hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
+            <h3 class="text-2xl font-euro-extd text-charcoal mb-4 uppercase italic">Training</h3>
+            <p class="text-battleship font-euro text-xs font-bold uppercase leading-relaxed">Precision-Engineered Performance.</p>
+            <div class="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="text-[10px] font-euro-extd uppercase tracking-[0.2em] text-graphite border-b border-charcoal pb-1">Ver Detalhes</span>
+            </div>
+        </a>
+
+        <a href="service/nutrition.html" class="block p-12 bg-pure-white border border-graphite/5 shadow-xl text-center hover:border-charcoal hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
+            <h3 class="text-2xl font-euro-extd text-graphite mb-4 uppercase italic group-hover:text-charcoal transition-colors">Nutrition</h3>
+            <p class="text-battleship font-euro text-xs font-bold uppercase leading-relaxed">Strategic Fueling & Metabolic Optimization.</p>
+            <div class="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="text-[10px] font-euro-extd uppercase tracking-[0.2em] text-graphite border-b border-charcoal pb-1">Ver Detalhes</span>
+            </div>
+        </a>
+
+        <a href="service/mindset.html" class="block p-12 bg-pure-white border border-graphite/5 shadow-xl text-center hover:border-charcoal hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
+            <h3 class="text-2xl font-euro-extd text-charcoal mb-4 uppercase italic">Mindset</h3>
+            <p class="text-battleship font-euro text-xs font-bold uppercase leading-relaxed">The Foundation of Excellence.</p>
+            <div class="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="text-[10px] font-euro-extd uppercase tracking-[0.2em] text-graphite border-b border-charcoal pb-1">Ver Detalhes</span>
+            </div>
+        </a>
+    </div>
+</section>
+            <section id="vision-reveal" class="relative h-screen w-full bg-graphite flex items-center justify-center overflow-hidden border-t border-white/5 z-20">
+                <div class="noise-overlay"></div>
+
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                    <h2 class="text-[15vw] font-euro-extd italic leading-none text-pure-white/5 uppercase tracking-tighter mix-blend-overlay">VISION</h2>
+                </div>
+
+                <div id="vision-img-wrapper" class="relative z-10 w-full h-[60vh] md:w-[60vw] md:h-[70vh] flex items-center justify-center overflow-hidden border border-pure-white/10 shadow-2xl group cursor-crosshair">
+                    <img id="vision-img" src="img/sequeira_elevator.jpg" class="w-full h-full object-cover grayscale brightness-90 contrast-110 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Coach Sequeira Vision" style="transform: scale(1.3); filter: grayscale(100%);">
+                    
+                    <div id="vision-light-leak" class="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 60%); mix-blend-mode: overlay;"></div>
+                </div>
+
+                <div id="vision-ui-badge" class="absolute z-20 bottom-12 right-12 md:bottom-20 md:right-20 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none">
+                    <p class="font-euro text-pure-white text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-bold">Uncompromising Standards.</p>
+                </div>
+                
+                <div class="absolute z-20 bottom-10 left-10 md:bottom-20 md:left-20 flex flex-col items-center gap-4 hidden md:flex pointer-events-none">
+                    <span class="font-euro text-pure-white/50 text-[9px] uppercase tracking-widest font-bold rotate-90 mb-6">Scroll</span>
+                    <div class="w-[1px] h-16 bg-pure-white/20 overflow-hidden relative">
+                        <div id="scroll-line-indicator" class="absolute top-0 left-0 w-full h-full bg-pure-white transform -translate-y-full"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements" class="bg-[#111111] py-32 md:py-48 px-6 md:px-12 relative z-20 border-t border-pure-white/5 overflow-hidden">
+                
+                <div class="noise-overlay"></div>
+
+                <div class="max-w-[1600px] mx-auto relative z-10">
+                    
+                    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-12">
+                        <div class="relative">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-16 h-[1px] bg-charcoal"></div>
+                                <p class="font-euro text-battleship text-[10px] md:text-[12px] font-black uppercase tracking-[0.5em]">Hall of Fame</p>
+                            </div>
+                            <h2 class="text-6xl md:text-[8rem] font-euro-extd italic leading-[0.85] uppercase tracking-tighter text-pure-white relative z-10">
+                                THE <br><span class="text-charcoal drop-shadow-[0_0_15px_rgba(59,74,55,0.3)]">LEGACY</span>
+                            </h2>
+                        </div>
+                        <div class="max-w-md lg:pb-4">
+                            <p class="font-euro text-aluminium text-xs md:text-sm leading-relaxed border-l border-pure-white/10 pl-6 text-justify">
+                                Cada palco é a prova de uma disciplina intransigente. Um registo visual de condição física extrema, mestria estratégica e a procura implacável pela perfeição estética. Onde o esforço se materializa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[350px]">
+
+                        <div class="achiev-card md:row-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_01.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="WNBF Pro Card">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">01</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Hero Moment</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">WNBF Pro Card</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_03.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Stage Intensity">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">02</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Focus</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Stage Intensity</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_06.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Pro Status">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">03</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Victory</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Pro Status</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card md:row-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_05.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Natural Stage">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">04</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Lineup</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Natural Stage</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card md:col-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_02.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Belgian Cup">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">05</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Profile</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Belgian Cup</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_08.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Gold Medals">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">06</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Champion</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Gold Medals</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card md:col-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_07.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Overall Lineup">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">07</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Comparison</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Overall Lineup</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm shadow-2xl">
+                            <img src="img/champ_04.jpg" class="w-full h-full object-cover object-center grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Winning Team">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/50 opacity-80 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+                            
+                            <div class="absolute top-6 left-6 md:top-8 md:left-8 overflow-hidden pointer-events-none">
+                                <span class="block font-euro-extd text-xl md:text-3xl text-pure-white/30 transform translate-y-full group-hover:translate-y-0 group-hover:text-charcoal transition-all duration-500 ease-out">08</span>
+                            </div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
+                                <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
+                                    <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-70">Support</p>
+                                    <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3 drop-shadow-lg">Winning Team</p>
+                                    <div class="w-0 group-hover:w-12 h-[2px] bg-charcoal transition-all duration-700 delay-300"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="training-view" class="page-view pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
         <div class="mb-20 max-w-4xl">
             <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4">THE SEQUEIRA METHOD</p>
             <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite leading-none mb-8">Elite <span class="text-charcoal">Training</span></h1>
@@ -66,7 +602,6 @@
                 <h3 class="font-euro-extd text-2xl uppercase text-graphite mb-3">Training: Precision-Engineered Performance</h3>
                 <p class="font-euro text-graphite text-lg md:text-xl leading-relaxed">
                     For the natural athlete, every set must be a calculated move toward growth. My training philosophy is rooted in evidence-based methodology, focusing on advanced biomechanics, strategic periodization, and progressive overload. We move beyond "lifting heavy" to prioritize movement quality and structural integrity. 
-                    <strong class="text-charcoal">Every workout is custom-tailored to maximize your genetic potential, ensuring that your effort in the gym translates into tangible, high-quality muscle tissue.</strong>
                 </p>
             </div>
         </div>
@@ -80,131 +615,198 @@
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">A prioridade máxima. Analisamos alavancas e perfis de resistência. Um exercício só é eficaz se for executado no ângulo exato.</p>
-                    </div>
-                </div>
-                <div class="accordion-item py-4">
-                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Gestão de Intensidade (RIR)</h4>
-                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">A proximidade à falha (Repetições na Reserva) gerida de forma matemática para crescer sem fritar o Sistema Nervoso Central.</p>
-                    </div>
-                </div>
-                <div class="accordion-item py-4">
-                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Progressive Overload</h4>
-                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">A prioridade máxima. Analisamos alavancas e perfis de resistência.</p>
                     </div>
                 </div>
                 <div class="mt-12">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzwS649P4LR_sxz3P9ZDJu1nzMa3kJE1iU1fqkMIM_GfKILA/viewform" target="_blank" class="btn-militar">Juntar à Equipa</a>
                 </div>
             </div>
-            <div class="h-full flex items-start">
-                <div class="w-full relative">
-                    <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mb-4 text-right">Inside the Method</p>
-                    <div class="video-container relative w-full aspect-video bg-graphite rounded-sm overflow-hidden shadow-2xl cursor-pointer group">
-                        <img src="img/IMG_0981.jpg" alt="Video Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 filter grayscale">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="play-btn w-20 h-20 bg-white/10 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center text-pure-white transition-all duration-300">
-                                <i class="fa-solid fa-play text-2xl ml-1"></i>
-                            </div>
-                        </div>
-                        <div class="absolute bottom-6 left-6">
-                            <h4 class="font-euro-extd text-pure-white uppercase italic text-xl">Biomecânica Aplicada</h4>
-                            <p class="font-euro text-pure-white/70 text-xs font-bold tracking-widest mt-1">Video Guide</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
 
-        <!-- ================= SECTION: EXPERIENCE ================= -->
-        <section id="experience" class="mt-40 relative pt-20 pb-10 overflow-hidden">
-            <!-- Background Animado (Slogan & Linhas) -->
-            <div class="absolute inset-0 flex flex-col justify-center pointer-events-none opacity-10 select-none z-0">
-                
-                <!-- Slogan Principal: Esquerda para a Direita (Alternando Verde e Cinzento) -->
-                <div class="animate-marquee-ltr flex whitespace-nowrap text-[10vw] font-euro-extd italic uppercase leading-none tracking-tighter">
-                    <div class="flex gap-16 shrink-0 pr-16">
-                        <span class="text-charcoal">SEQUEIRA</span>
-                        <span class="text-battleship">SEQUEIRA</span>
-                        <span class="text-charcoal">SEQUEIRA</span>
-                        <span class="text-battleship">SEQUEIRA</span>
-                    </div>
-                    <div class="flex gap-16 shrink-0 pr-16" aria-hidden="true">
-                        <span class="text-charcoal">SEQUEIRA</span>
-                        <span class="text-battleship">SEQUEIRA</span>
-                        <span class="text-charcoal">SEQUEIRA</span>
-                        <span class="text-battleship">SEQUEIRA</span>
-                    </div>
-                </div>
+    <div id="nutrition-view" class="page-view pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen"></div>
+    <div id="mindset-view" class="page-view pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen"></div>
 
-                <!-- Linha de Texto Inferior: Direita para a Esquerda (Alternando Verde e Cinzento) -->
-                <div class="animate-marquee-rtl flex whitespace-nowrap text-[3vw] font-euro-extd uppercase tracking-[0.2em] mt-4 border-t border-b border-graphite/20 py-4 bg-white">
-                    <div class="flex gap-20 shrink-0 pr-20 items-center">
-                        <span class="text-battleship">EFFORT IS THE BEST TALENT</span>
-                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
-                        <span class="text-charcoal">HIGH-QUALITY TISSUE</span>
-                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
-                        <span class="text-battleship">EXPERIMENTAL PERFORMANCE</span>
-                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
-                    </div>
-                    <div class="flex gap-20 shrink-0 pr-20 items-center" aria-hidden="true">
-                        <span class="text-battleship">EFFORT IS THE BEST TALENT</span>
-                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
-                        <span class="text-charcoal">HIGH-QUALITY TISSUE</span>
-                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
-                        <span class="text-battleship">EXPERIMENTAL PERFORMANCE</span>
-                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
-                    </div>
+    <footer class="bg-white border-t border-graphite/10 pt-20 pb-10 relative z-20">
+        <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left">
+            <div>
+                <a href="#" onclick="showView('main-view')" class="logo-wordmark text-3xl text-charcoal">Coach Sequeira</a>
+                <p class="mt-6 font-euro text-battleship text-[10px] uppercase tracking-[0.3em] font-bold leading-loose">Elevating aesthetics through science and discipline. Effort is the best talent.</p>
+            </div>
+            <div class="flex flex-col items-center gap-8">
+                <h4 class="font-euro-extd text-xs uppercase tracking-widest text-graphite">Social Media</h4>
+                <div class="flex gap-10">
+                    <a href="https://www.instagram.com/sequeirawnbfpro/" target="_blank" class="social-link"><i class="fab fa-instagram text-2xl"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@DiogoSequeira10" class="social-link"><i class="fab fa-youtube text-2xl"></i> YouTube</a>
                 </div>
             </div>
-
-            <!-- Conteúdo em primeiro plano (Foreground) -->
-            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                <div class="lg:col-span-1">
-                    <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4">COMPETENCE & TRACK RECORD</p>
-                    <h2 class="text-4xl md:text-5xl font-euro-extd italic uppercase text-graphite leading-none mb-6">The <span class="text-charcoal">Experience</span></h2>
-                    <p class="font-euro text-graphite text-base leading-relaxed">
-                        Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular.
-                    </p>
-                </div>
-                
-                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="border border-graphite/10 p-8 bg-white/70 backdrop-blur-md hover:border-charcoal transition-all duration-300 group">
-                        <span class="font-euro-extd text-4xl text-charcoal block mb-2 transition-transform group-hover:translate-x-1">100+</span>
-                        <h4 class="font-euro-extd text-sm uppercase text-graphite mb-2">Físicos Reconstruídos</h4>
-                        <p class="font-euro text-battleship text-xs leading-relaxed">Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia.</p>
-                    </div>
-                    <div class="border border-graphite/10 p-8 bg-white/70 backdrop-blur-md hover:border-charcoal transition-all duration-300 group">
-                        <span class="font-euro-extd text-4xl text-battleship block mb-2 transition-transform group-hover:translate-x-1">100%</span>
-                        <h4 class="font-euro-extd text-sm uppercase text-graphite mb-2">Metodologia Científica</h4>
-                        <p class="font-euro text-battleship text-xs leading-relaxed">Corte total de mitos do ginásio. Aplicação prática de biomecânica avançada e dados empíricos estruturados.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-white border-t border-graphite/10 py-10 relative z-20">
-        <div class="max-w-[1800px] mx-auto px-6 text-center">
-            <p class="font-euro text-[10px] uppercase tracking-[0.6em] text-graphite font-black">© 2024 Coach Sequeira - Effort is the best talent.</p>
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        function showView(viewId) {
+            window.scrollTo(0, 0); 
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            
+            if(viewId === 'main-view') {
+                document.getElementById('main-nav').classList.remove('hidden');
+                document.getElementById('main-nav').classList.add('md:flex');
+                document.getElementById('back-nav').classList.add('hidden');
+            } else {
+                document.getElementById('main-nav').classList.add('hidden');
+                document.getElementById('back-nav').classList.remove('hidden');
+            }
+            setTimeout(() => { ScrollTrigger.refresh(); }, 50);
+        }
+
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
             const parent = element.parentElement;
-            if (content.style.maxHeight) { content.style.maxHeight = null; parent.classList.remove('accordion-active'); } 
-            else { document.querySelectorAll('.accordion-content').forEach((item) => { item.style.maxHeight = null; item.parentElement.classList.remove('accordion-active'); }); content.style.maxHeight = content.scrollHeight + "px"; parent.classList.add('accordion-active'); }
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                parent.classList.remove('accordion-active');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                parent.classList.add('accordion-active');
+            }
         }
+
+        // HERO 3D EFFECT
+        const heroSection = document.querySelector('#home');
+        const heroTitle = document.querySelector('#hero-title');
+        const layers = document.querySelectorAll('.layer');
+
+        heroSection.addEventListener('mousemove', (e) => {
+            const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
+            const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
+            gsap.to(heroTitle, { rotationY: xVal * 30, rotationX: -yVal * 30, duration: 1.2, ease: "power2.out" });
+            layers.forEach(layer => {
+                const speed = layer.getAttribute('data-speed');
+                gsap.to(layer, { x: xVal * (speed * 1.5), y: yVal * (speed * 1.5), duration: 1.5, ease: "power2.out" });
+            });
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            gsap.to([heroTitle, ...layers], { x: 0, y: 0, rotationX: 0, rotationY: 0, duration: 2, ease: "elastic.out(1, 0.3)" });
+        });
+
+        // WIPE EFFECT FOTO (EXPERIENCE)
+        const tlExp = gsap.timeline({ scrollTrigger: { trigger: "#experience", start: "top top", end: "+=2000", pin: true, scrub: 1.2 } });
+        tlExp.to("#photo-mask", { clipPath: "inset(18% 32% 18% 32%)", ease: "power2.inOut", duration: 2.5 });
+        tlExp.to(".logo-wipe-reveal", { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", ease: "power3.inOut", duration: 1.8 }, "-=1.0");
+        tlExp.to("#exp-text-container", { opacity: 1, y: -10, duration: 0.5, ease: "power2.out" }, "-=0.2");
+
+        // HORIZONTAL SCROLL DOS ATLETAS (TEAM SEQUEIRA)
+        const athletesContainer = document.querySelector(".athletes-cards-container");
+        if(athletesContainer) {
+            gsap.to(athletesContainer, {
+                x: () => -(athletesContainer.scrollWidth - window.innerWidth / 1.8),
+                ease: "none",
+                scrollTrigger: { trigger: "#athletes-gallery", pin: true, scrub: 1, start: "top top", end: () => "+=" + athletesContainer.scrollWidth }
+            });
+        }
+
+        // THE VISION - LIGHT LEAK BRANCO/PRATA (WHITE ALUMINIUM) E PARALLAX
+        const visionSection = document.querySelector('#vision-reveal');
+        const visionWrapper = document.querySelector('#vision-img-wrapper');
+        const visionImg = document.querySelector('#vision-img');
+        const visionLightLeak = document.querySelector('#vision-light-leak');
+        const visionUiBadge = document.querySelector('#vision-ui-badge');
+        const scrollLine = document.querySelector('#scroll-line-indicator');
+
+        if (visionSection && visionWrapper && visionImg) {
+            let tlVision = gsap.timeline({
+                scrollTrigger: {
+                    trigger: visionSection,
+                    start: "top bottom",
+                    end: "center center",
+                    scrub: 1.2
+                }
+            });
+
+            tlVision.fromTo(visionWrapper, 
+                { clipPath: "inset(30% 30% 30% 30%)", borderRadius: "10px" },
+                { clipPath: "inset(0% 0% 0% 0%)", borderRadius: "0px", ease: "power2.out" }
+            );
+
+            tlVision.fromTo(visionImg,
+                { scale: 1.5, filter: "grayscale(100%) brightness(90%)" },
+                { scale: 1, filter: "grayscale(100%) brightness(90%)", ease: "power2.out" },
+                "<"
+            );
+
+            if (visionUiBadge) {
+                gsap.to(visionUiBadge, {
+                    y: "0%",
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: visionSection,
+                        start: "top 40%", 
+                    }
+                });
+            }
+
+            if (visionLightLeak) {
+                visionWrapper.addEventListener('mousemove', (e) => {
+                    const rect = visionWrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left; 
+                    const y = e.clientY - rect.top;  
+
+                    gsap.to(visionLightLeak, {
+                        // Utiliza o prateado/branco para um efeito cinematográfico overlay
+                        background: `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.4) 0%, transparent 60%)`,
+                        duration: 0.3,
+                        ease: "power1.out"
+                    });
+                });
+
+                visionWrapper.addEventListener('mouseleave', () => {
+                    gsap.to(visionLightLeak, {
+                        background: `radial-gradient(circle at center, rgba(255, 255, 255, 0) 0%, transparent 70%)`,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                });
+            }
+
+            if(scrollLine) {
+                gsap.to(scrollLine, {
+                    y: "100%",
+                    duration: 1.5,
+                    repeat: -1,
+                    ease: "power3.inOut"
+                });
+            }
+        }
+
+        // PARALLAX VERTICAL NAS FOTOS DOS ACHIEVEMENTS
+        const achievCards = gsap.utils.toArray('.achiev-card');
+        achievCards.forEach((card, index) => {
+            let speed = (index % 2 === 0) ? -60 : -20;
+            gsap.fromTo(card,
+                { y: 30 },
+                {
+                    y: speed,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#achievements",
+                        start: "top bottom", 
+                        end: "bottom top",  
+                        scrub: true         
+                    }
+                }
+            );
+        });
+
     </script>
 </body>
 </html>

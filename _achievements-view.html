@@ -1,0 +1,185 @@
+    <!-- =================== ACHIEVEMENTS VIEW =================== -->
+    <div id="achievements-view" class="page-view pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
+        <div class="mb-16 md:mb-24 max-w-4xl">
+            <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4">THE SEQUEIRA LEGACY</p>
+            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite leading-none mb-8">
+                <span class="text-charcoal">Achievements</span>
+            </h1>
+            <motion class="border-l-4 border-charcoal pl-6 py-2">
+                <h3 class="font-euro-extd text-2xl uppercase text-graphite mb-3">WNBF Pro · Natural Bodybuilding</h3>
+                <p class="font-euro text-graphite text-lg md:text-xl leading-relaxed">
+                    Cada título no palco representa anos de treino natural, nutrição calculada e disciplina inabalável. Diogo Sequeira construiu o seu nome na WNBF — a federação onde só contam genética, método e consistência.
+                    <strong class="text-charcoal">O resultado no palco é a prova. O método é a obsessão.</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-28 py-10 border-y border-graphite/10">
+            <div class="achievement-stat">
+                <p class="font-euro-extd text-4xl md:text-5xl text-charcoal italic leading-none">PRO</p>
+                <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mt-2">WNBF Pro Card</p>
+            </div>
+            <div class="achievement-stat">
+                <p class="font-euro-extd text-4xl md:text-5xl text-graphite italic leading-none">3+</p>
+                <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mt-2">Overall Titles</p>
+            </div>
+            <div class="achievement-stat">
+                <p class="font-euro-extd text-4xl md:text-5xl text-graphite italic leading-none">16+</p>
+                <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mt-2">Week Contest Preps</p>
+            </div>
+            <div class="achievement-stat">
+                <p class="font-euro-extd text-4xl md:text-5xl text-charcoal italic leading-none">100%</p>
+                <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mt-2">Natural Athlete</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24 md:mb-32">
+            <div>
+                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6">Career Milestones</h3>
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">WNBF Pro Card</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">Reconhecimento oficial na federação natural mais rigorosa do mundo — conquistado por uma fração de atletas que treinam limpos durante toda a carreira.</p>
+                    </div>
+                </div>
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Overall Champion</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">Múltiplas vitórias overall a nível nacional. Cada título é o resultado de prep micro-gerida, nutrição estratégica e um bloco de treino desenhado para condição de palco.</p>
+                    </div>
+                </div>
+                <div class="accordion-item py-4">
+                    <motion class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Coaching Legacy</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">O método que construiu o atleta hoje forma outros — desde estreantes em competição até atletas Pro, sob o sistema Sequeira.</p>
+                    </div>
+                </div>
+                <div class="mt-12 flex flex-wrap gap-4">
+                    <a href="https://www.instagram.com/sequeirawnbfpro/" target="_blank" rel="noopener noreferrer" class="btn-militar">Instagram</a>
+                    <a href="https://www.youtube.com/@DiogoSequeira10" target="_blank" rel="noopener noreferrer" class="btn-militar" style="background:#353535;">YouTube</a>
+                </div>
+            </div>
+            <div class="h-full flex items-start">
+                <div class="w-full relative">
+                    <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mb-4 text-right">Career Snapshot</p>
+                    <div class="relative w-full aspect-[4/5] bg-graphite rounded-sm overflow-hidden shadow-2xl group achievement-card">
+                        <img src="img/IMG_0982.jpg" alt="WNBF Pro on stage" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-graphite/90 via-graphite/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <p class="font-euro text-charcoal text-[10px] font-black uppercase tracking-[0.4em] mb-2">WNBF Pro Athlete</p>
+                            <h4 class="font-euro-extd text-pure-white uppercase italic text-2xl md:text-3xl leading-none">Overall Champion</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4">VISUAL ARCHIVE</p>
+            <h2 class="text-3xl md:text-5xl font-euro-extd italic uppercase text-graphite leading-none">On <span class="text-charcoal">Stage</span> Moments</h2>
+        </div>
+
+        <div class="achievements-mosaic mb-8">
+            <div class="achievement-card ach-span-8-3 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_01.jpg" alt="Championship moment 1" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-xl mb-1">Overall Victory</h4>
+                        <p class="font-euro text-pure-white/75 text-xs uppercase tracking-widest">National stage</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-4-2 relative overflow-hidden rounded-sm shadow-lg group float-down-slow">
+                <img src="img/champ_02.jpg" alt="Championship moment 2" class="w-full h-full object-cover">
+                <motion class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <motion>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg mb-1">Peak Condition</h4>
+                        <p class="font-euro text-pure-white/75 text-xs">Contest prep</p>
+                    </div>
+                </motion>
+            </div>
+            <div class="achievement-card ach-span-4-3 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_03.jpg" alt="Championship moment 3" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg mb-1">Stage Presence</h4>
+                        <p class="font-euro text-pure-white/75 text-xs">Posing mastery</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-4-2 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_04.jpg" alt="Championship moment 4" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg mb-1">Definition</h4>
+                        <p class="font-euro text-pure-white/75 text-xs">Peak shape</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-8-2 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_05.jpg" alt="Championship moment 5" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-xl mb-1">Elite Physique</h4>
+                        <p class="font-euro text-pure-white/75 text-xs uppercase tracking-widest">Sequeira Method</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-6-2 relative overflow-hidden rounded-sm shadow-lg group float-down-slow">
+                <img src="img/champ_06.jpg" alt="Championship moment 6" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg mb-1">Symmetry</h4>
+                        <p class="font-euro text-pure-white/75 text-xs">Pro standard</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-6-2 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_07.jpg" alt="Championship moment 7" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg mb-1">Discipline</h4>
+                        <p class="font-euro text-pure-white/75 text-xs">Years of work</p>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-4-2 relative overflow-hidden rounded-sm shadow-lg group bg-graphite border border-graphite/10 flex flex-col items-center justify-center min-h-[200px]">
+                <span class="font-euro-extd text-5xl text-pure-white/10 group-hover:text-charcoal/40 transition-colors duration-500">∞</span>
+                <i class="fa-solid fa-trophy text-4xl text-pure-white/10 group-hover:text-charcoal/40 transition-colors duration-500 mt-3"></i>
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/95 via-graphite/50 to-transparent flex items-end p-5">
+                    <div>
+                        <p class="font-euro text-pure-white/50 text-[10px] font-black uppercase tracking-[0.4em] mb-2">Next Chapter</p>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-lg leading-tight">To Be Announced</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-card ach-span-8-2 relative overflow-hidden rounded-sm shadow-lg group">
+                <img src="img/champ_08.jpg" alt="Championship moment 8" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                        <h4 class="font-euro-extd text-pure-white uppercase italic text-xl mb-1">The Journey</h4>
+                        <p class="font-euro text-pure-white/75 text-xs uppercase tracking-widest">Still writing history</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 md:mt-24 text-center max-w-2xl mx-auto pb-8">
+            <p class="font-euro text-graphite text-base md:text-lg leading-relaxed">
+                Os resultados de Diogo refletem a aplicação rigorosa do Sequeira Method.
+                <span class="text-charcoal font-bold">Biomecânica precisa, intensidade gerida e progressão sistemática.</span>
+                Este é o padrão de excelência que oferecemos a cada atleta.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzwS649P4LR_sxz3P9ZDJu1nzMa3kJE1iU1fqkMIM_GfKILA/viewform" target="_blank" rel="noopener noreferrer" class="btn-militar inline-block mt-10">Juntar à Equipa</a>
+        </div>
+    </div>
+

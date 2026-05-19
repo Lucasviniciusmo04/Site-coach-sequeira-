@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition | Coach Sequeira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'graphite': '#353535', 'charcoal': '#3B4A37', 'battleship': '#828182', 'pure-white': '#FFFFFF' }, fontFamily: { euro: ['Eurostile', 'sans-serif'], 'euro-extd': ['Eurostile Extended', 'sans-serif'] } } } }
+    </script>
+    <style>
+        @font-face { font-family: 'Eurostile'; src: url('fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Eurostile Extended'; src: url('fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
+        body { background-color: #FFFFFF; color: #353535; font-family: 'Eurostile', sans-serif; overflow-x: hidden; }
+        .logo-wordmark { font-family: 'Eurostile Extended', sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+        .btn-militar { position: relative; padding: 15px 40px; background: #3B4A37; color: #FFFFFF; font-family: 'Eurostile Extended', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: all 0.4s; display: inline-block; }
+        .btn-militar:hover { background: #353535; transform: scale(1.02); }
+        .accordion-item { border-bottom: 1px solid rgba(53, 53, 53, 0.1); }
+        .accordion-header { cursor: pointer; transition: all 0.3s ease; }
+        .accordion-header:hover { color: #3B4A37; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .icon-cross { transition: transform 0.3s ease; }
+        .accordion-active .icon-cross { transform: rotate(45deg); color: #3B4A37; }
+        .video-container:hover .play-btn { transform: scale(1.1); background-color: #3B4A37; color: #FFFFFF; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur-md border-b border-graphite/5">
+        <div class="max-w-[1800px] mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="logo-wordmark text-2xl flex items-center gap-2">
+                <span class="text-graphite">COACH</span><span class="text-charcoal">SEQUEIRA</span>
+            </a>
+            <nav class="flex gap-10 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
+                <a href="index.html#services" class="text-graphite hover:text-charcoal transition-colors flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i> Voltar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
+        <div class="mb-20 max-w-4xl">
+            <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4">THE SEQUEIRA METHOD</p>
+            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite leading-none mb-8">Elite <span class="text-charcoal">Nutrition</span></h1>
+            <div class="border-l-4 border-charcoal pl-6 py-2">
+                <h3 class="font-euro-extd text-2xl uppercase text-graphite mb-3">Nutrition: Strategic Fueling & Metabolic Optimization</h3>
+                <p class="font-euro text-graphite text-lg md:text-xl leading-relaxed">
+                    Nutrition is the architecture of your physique. We move past restrictive, one-size-fits-all diets to implement a performance-driven nutritional strategy. By optimizing macronutrient ratios and focusing on metabolic health, we ensure your body is fueled for peak performance and efficient recovery. 
+                    <strong class="text-charcoal">Whether we are in a caloric surplus for growth or a deficit for maximum definition, your plan is designed to be sustainable, scientific, and results-oriented.</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            <div>
+                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6">Pilares da Nutrição</h3>
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Balanço Energético Preciso</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">Definimos um défice ou superavit sem comprometer a energia diária. Foco na preservação da massa magra.</p>
+                    </div>
+                </div>
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Timing de Nutrientes</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">Estruturamos refeições em torno do treino (Peri-Workout) para o máximo rendimento na sala de pesos e recuperação rápida.</p>
+                    </div>
+                </div>
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite">Saúde e Digestão</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed">Priorizamos alimentos de alta densidade para garantir saúde digestiva, essencial para a absorção total de nutrientes.</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzwS649P4LR_sxz3P9ZDJu1nzMa3kJE1iU1fqkMIM_GfKILA/viewform" target="_blank" class="btn-militar">Juntar à Equipa</a>
+                </div>
+            </div>
+            <div class="h-full flex items-start">
+                <div class="w-full relative">
+                    <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship mb-4 text-right">Inside the Method</p>
+                    <div class="video-container relative w-full aspect-video bg-graphite rounded-sm overflow-hidden shadow-2xl cursor-pointer group">
+                        <img src="img/IMG_1227.jpg" alt="Video Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 filter grayscale">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="play-btn w-20 h-20 bg-white/10 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center text-pure-white transition-all duration-300">
+                                <i class="fa-solid fa-play text-2xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h4 class="font-euro-extd text-pure-white uppercase italic text-xl">Ciência Nutricional</h4>
+                            <p class="font-euro text-pure-white/70 text-xs font-bold tracking-widest mt-1">Video Guide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-graphite/10 py-10 relative z-20">
+        <div class="max-w-[1800px] mx-auto px-6 text-center">
+            <p class="font-euro text-[10px] uppercase tracking-[0.6em] text-graphite font-black">© 2024 Coach Sequeira - Effort is the best talent.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const parent = element.parentElement;
+            if (content.style.maxHeight) { content.style.maxHeight = null; parent.classList.remove('accordion-active'); } 
+            else { document.querySelectorAll('.accordion-content').forEach((item) => { item.style.maxHeight = null; item.parentElement.classList.remove('accordion-active'); }); content.style.maxHeight = content.scrollHeight + "px"; parent.classList.add('accordion-active'); }
+        }
+    </script>
+</body>
+</html>
