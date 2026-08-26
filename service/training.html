@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino | Coach Sequeira</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        'graphite': '#353535', 
+                        'charcoal': '#3B4A37', 
+                        'battleship': '#828182', 
+                        'pure-white': '#FFFFFF' 
+                    }, 
+                    fontFamily: { 
+                        euro: ['Eurostile', 'sans-serif'], 
+                        'euro-extd': ['Eurostile Extended', 'sans-serif'] 
+                    } 
+                } 
+            } 
+        }
+    </script>
+
+    <style>
+        /* --- SISTEMA DARK MODE (ESCURO SUAVE) --- */
+        html.dark body { background-color: #1E1E1E; color: #E5E5E5; }
+        html.dark .bg-white, html.dark .bg-pure-white { background-color: #1E1E1E !important; }
+        html.dark .text-graphite { color: #F5F5F5 !important; }
+        html.dark header.bg-white\/90 { background-color: rgba(30, 30, 30, 0.9) !important; border-bottom-color: rgba(255,255,255,0.05); }
+        html.dark .border-graphite\/5, html.dark .border-graphite\/10, html.dark .border-graphite\/20 { border-color: rgba(255,255,255,0.05) !important; }
+        html.dark .accordion-item { border-color: rgba(255,255,255,0.1); }
+        html.dark .btn-militar:hover { background: #FFFFFF; color: #1E1E1E; }
+        html.dark .logo-wordmark { color: #FFFFFF; }
+        html.dark .logo-wordmark .text-charcoal { color: #627A5C; }
+        html.dark .bg-white\/70 { background-color: rgba(30, 30, 30, 0.7) !important; } 
+
+        /* FONTES */
+        @font-face { font-family: 'Eurostile'; src: url('fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Eurostile Extended'; src: url('fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+        
+        body { font-family: 'Eurostile', sans-serif; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
+        
+        .logo-wordmark { font-family: 'Eurostile Extended', sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; }
+        
+        /* BOTÕES E EFEITOS */
+        .btn-militar { position: relative; padding: 15px 40px; background: #3B4A37; color: #FFFFFF; font-family: 'Eurostile Extended', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: all 0.4s; display: inline-block; cursor: pointer; }
+        .btn-militar:hover { background: #353535; transform: scale(1.02); }
+        
+        /* ACORDEÃO */
+        .accordion-item { border-bottom: 1px solid rgba(53, 53, 53, 0.1); transition: border-color 0.4s ease; }
+        .accordion-header { cursor: pointer; transition: all 0.3s ease; }
+        .accordion-header:hover { color: #3B4A37; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .icon-cross { transition: transform 0.3s ease; }
+        .accordion-active .icon-cross { transform: rotate(45deg); color: #3B4A37; }
+        
+        /* ESCONDER A BARRA DE SCROLL NO CARROSSEL */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* MARQUEE ANIMATION */
+        @keyframes marqueeLTR { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+        @keyframes marqueeRTL { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee-ltr { display: flex; width: max-content; animation: marqueeLTR 30s linear infinite; }
+        .animate-marquee-rtl { display: flex; width: max-content; animation: marqueeRTL 25s linear infinite; }
+    </style>
+</head>
+<body class="antialiased bg-white text-graphite">
+
+    <!-- HEADER COM BOTÕES (IDIOMA + MODO ESCURO) -->
+    <header class="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur-md border-b border-graphite/5 transition-colors duration-400">
+        <div class="max-w-[1800px] mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Link do Logo -->
+            <a href="../index.html" class="logo-wordmark text-2xl flex items-center gap-2 transition-transform hover:scale-105">
+                <span class="text-graphite transition-colors">COACH</span><span class="text-charcoal transition-colors">SEQUEIRA</span>
+            </a>
+            
+            <nav class="flex items-center gap-4 md:gap-6 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
+                <!-- Botão Voltar -->
+                <a href="../index.html#services" class="text-graphite hover:text-charcoal transition-colors flex items-center dark:text-pure-white" data-i18n-pt='<i class="fa-solid fa-arrow-left mr-2"></i> Voltar' data-i18n-en='<i class="fa-solid fa-arrow-left mr-2"></i> Back'>
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
+                </a>
+                
+                <!-- BLOCO DE AÇÕES -->
+                <div class="flex items-center gap-2 md:gap-4 border-l border-graphite/20 dark:border-white/20 pl-4 ml-2">
+                    <!-- BOTÃO DE TRADUÇÃO -->
+                    <button onclick="toggleLanguage()" id="lang-btn" aria-label="Alterar Idioma" class="text-graphite dark:text-pure-white font-euro-extd text-[10px] tracking-widest border border-graphite/20 dark:border-white/20 px-3 py-1.5 rounded-sm hover:bg-graphite hover:text-white dark:hover:bg-white dark:hover:text-graphite transition-colors cursor-pointer">
+                        EN
+                    </button>
+                    
+                    <!-- BOTÃO MODO ESCURO/CLARO -->
+                    <button onclick="toggleTheme()" aria-label="Alterar Tema" class="text-graphite dark:text-pure-white text-[16px] px-2 py-1.5 hover:text-charcoal transition-colors cursor-pointer">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
+        
+        <!-- CABEÇALHO DA SECÇÃO -->
+        <div class="mb-20 max-w-4xl">
+            <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="O MÉTODO SEQUEIRA" data-i18n-en="THE SEQUEIRA METHOD">O MÉTODO SEQUEIRA</p>
+            
+            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-8" data-i18n-pt="Elite <span class='text-charcoal'>Treino</span>" data-i18n-en="Elite <span class='text-charcoal'>Training</span>">
+                Elite <span class="text-charcoal">Treino</span>
+            </h1>
+            
+            <div class="border-l-4 border-charcoal pl-6 py-2">
+                <h3 class="font-euro-extd text-2xl uppercase text-graphite transition-colors duration-400 mb-3" data-i18n-pt="Treino: Performance Projetada com Precisão" data-i18n-en="Training: Precision-Engineered Performance">
+                    Treino: Performance Projetada com Precisão
+                </h3>
+                <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-lg md:text-xl leading-relaxed" data-i18n-pt='Para o atleta natural, cada série deve ser um movimento calculado em direção ao crescimento. A minha filosofia de treino está enraizada numa metodologia baseada em evidência científica, focando-se em biomecânica avançada, periodização estratégica e sobrecarga progressiva. Ultrapassamos o "levantar pesado" de forma aleatória para priorizar a qualidade do movimento e a integridade estrutural. <strong class="text-charcoal dark:text-[#627A5C]">Cada treino é desenhado à medida para maximizar o teu potencial genético, garantindo que o teu esforço no ginásio se traduz em tecido muscular tangível e de alta qualidade.</strong>' data-i18n-en='For the natural athlete, every set must be a calculated move toward growth. My training philosophy is rooted in evidence-based methodology, focusing on advanced biomechanics, strategic periodization, and progressive overload. We move beyond "lifting heavy" to prioritize movement quality and structural integrity. <strong class="text-charcoal dark:text-[#627A5C]">Every workout is custom-tailored to maximize your genetic potential, ensuring that your effort in the gym translates into tangible, high-quality muscle tissue.</strong>'>
+                    Para o atleta natural, cada série deve ser um movimento calculado em direção ao crescimento. A minha filosofia de treino está enraizada numa metodologia baseada em evidência científica, focando-se em biomecânica avançada, periodização estratégica e sobrecarga progressiva. Ultrapassamos o "levantar pesado" de forma aleatória para priorizar a qualidade do movimento e a integridade estrutural. 
+                    <strong class="text-charcoal dark:text-[#627A5C]">Cada treino é desenhado à medida para maximizar o teu potencial genético, garantindo que o teu esforço no ginásio se traduz em tecido muscular tangível e de alta qualidade.</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            
+            <!-- COLUNA ESQUERDA: ACORDEÃO -->
+            <div>
+                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6" data-i18n-pt="Módulos de Execução" data-i18n-en="Execution Modules">Módulos de Execução</h3>
+                
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Biomecânica e Execução" data-i18n-en="Biomechanics & Execution">Biomecânica e Execução</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A prioridade máxima. Analisamos alavancas e perfis de resistência. Um exercício só é eficaz se for executado no ângulo exato." data-i18n-en="Maximum priority. We analyze levers and resistance profiles. An exercise is only effective if executed at the exact angle.">A prioridade máxima. Analisamos alavancas e perfis de resistência. Um exercício só é eficaz se for executado no ângulo exato.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Gestão de Intensidade (RIR)" data-i18n-en="Intensity Management (RIR)">Gestão de Intensidade (RIR)</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A proximidade à falha (Repetições na Reserva) gerida de forma matemática para crescer sem fritar o Sistema Nervoso Central." data-i18n-en="Proximity to failure (Reps in Reserve) managed mathematically to grow without frying the Central Nervous System.">A proximidade à falha (Repetições na Reserva) gerida de forma matemática para crescer sem fritar o Sistema Nervoso Central.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item py-4">
+                    <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Sobrecarga Progressiva" data-i18n-en="Progressive Overload">Sobrecarga Progressiva</h4>
+                        <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana." data-i18n-en="The undeniable metric. Systematic planning to force you to beat your records week after week.">A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzwS649P4LR_sxz3P9ZDJu1nzMa3kJE1iU1fqkMIM_GfKILA/viewform" target="_blank" class="btn-militar shadow-xl" data-i18n-pt="Juntar à Equipa" data-i18n-en="Join the Team">Juntar à Equipa</a>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA: CARROSSEL DE VÍDEOS (Estilo Reels/TikTok) -->
+            <div class="h-full flex items-start w-full overflow-hidden">
+                <div class="w-full relative">
+                    
+                    <div class="flex justify-between items-end mb-4">
+                        <p class="font-euro text-[10px] font-black uppercase tracking-[0.3em] text-battleship text-right w-full" data-i18n-pt="Por Dentro do Método <span class='hidden md:inline'>(Desliza &rarr;)</span>" data-i18n-en="Inside the Method <span class='hidden md:inline'>(Swipe &rarr;)</span>">
+                            Por Dentro do Método <span class="hidden md:inline">(Desliza &rarr;)</span>
+                        </p>
+                    </div>
+
+                    <!-- CONTAINER DO CARROSSEL HORIZONTAL -->
+                    <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6 cursor-grab active:cursor-grabbing">
+                        
+                        <!-- VÍDEO 01 -->
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
+                            <!-- Os links dos vídeos foram preparados com ../ -->
+                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50 2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+
+                            <div class="absolute bottom-6 left-6 pointer-events-none z-10">
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Execução Pura" data-i18n-en="Pure Execution">Execução Pura</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Biomecânica" data-i18n-en="Biomechanics">Biomecânica</p>
+                            </div>
+                        </div>
+
+                        <!-- VÍDEO 02 -->
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
+                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+
+                            <div class="absolute bottom-6 left-6 pointer-events-none z-10">
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Proximidade à Falha" data-i18n-en="Proximity to Failure">Proximidade à Falha</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Intensidade (RIR)" data-i18n-en="Intensity (RIR)">Intensidade (RIR)</p>
+                            </div>
+                        </div>
+
+                        <!-- VÍDEO 03 -->
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
+                            <video src="../videos.index/VIDEO-2026-07-21-21-30-20.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+
+                            <div class="absolute bottom-6 left-6 pointer-events-none z-10">
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Batendo Marcas" data-i18n-en="Beating Records">Batendo Marcas</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Overload" data-i18n-en="Overload">Overload</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= SECTION: EXPERIENCE ================= -->
+        <section id="experience" class="mt-40 relative pt-20 pb-10 overflow-hidden">
+            <!-- Background Animado (Slogan & Linhas) -->
+            <div class="absolute inset-0 flex flex-col justify-center pointer-events-none opacity-10 select-none z-0">
+                
+                <!-- Slogan Principal -->
+                <div class="animate-marquee-ltr flex whitespace-nowrap text-[10vw] font-euro-extd italic uppercase leading-none tracking-tighter">
+                    <div class="flex gap-16 shrink-0 pr-16">
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                    </div>
+                    <div class="flex gap-16 shrink-0 pr-16" aria-hidden="true">
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                    </div>
+                </div>
+
+                <!-- Linha de Texto Inferior (Animada) -->
+                <div class="animate-marquee-rtl flex whitespace-nowrap text-[3vw] font-euro-extd uppercase tracking-[0.2em] mt-4 border-t border-b border-graphite/20 dark:border-white/10 py-4 bg-white transition-colors duration-400">
+                    <div class="flex gap-20 shrink-0 pr-20 items-center">
+                        <span class="text-battleship" data-i18n-pt="O ESFORÇO É O MELHOR TALENTO" data-i18n-en="EFFORT IS THE BEST TALENT">O ESFORÇO É O MELHOR TALENTO</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                        <span class="text-charcoal" data-i18n-pt="TECIDO DE ALTA QUALIDADE" data-i18n-en="HIGH-QUALITY TISSUE">TECIDO DE ALTA QUALIDADE</span>
+                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
+                        <span class="text-battleship" data-i18n-pt="PERFORMANCE EMPÍRICA" data-i18n-en="EMPIRICAL PERFORMANCE">PERFORMANCE EMPÍRICA</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                    </div>
+                    <div class="flex gap-20 shrink-0 pr-20 items-center" aria-hidden="true">
+                        <span class="text-battleship" data-i18n-pt="O ESFORÇO É O MELHOR TALENTO" data-i18n-en="EFFORT IS THE BEST TALENT">O ESFORÇO É O MELHOR TALENTO</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                        <span class="text-charcoal" data-i18n-pt="TECIDO DE ALTA QUALIDADE" data-i18n-en="HIGH-QUALITY TISSUE">TECIDO DE ALTA QUALIDADE</span>
+                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
+                        <span class="text-battleship" data-i18n-pt="PERFORMANCE EMPÍRICA" data-i18n-en="EMPIRICAL PERFORMANCE">PERFORMANCE EMPÍRICA</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteúdo The Experience -->
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start mt-10">
+                <div class="lg:col-span-1">
+                    <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="COMPETÊNCIA & HISTÓRICO" data-i18n-en="COMPETENCE & TRACK RECORD">COMPETÊNCIA & HISTÓRICO</p>
+                    <h2 class="text-4xl md:text-5xl font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-6" data-i18n-pt="A <span class='text-charcoal'>Experiência</span>" data-i18n-en="The <span class='text-charcoal'>Experience</span>">A <span class="text-charcoal">Experiência</span></h2>
+                    <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-base leading-relaxed" data-i18n-pt="Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular." data-i18n-en="Years on the ground refining the physiological response of natural athletes. We transform raw effort into exact metrics and real muscle tissue evolution.">
+                        Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Cartão 1 -->
+                    <div class="border border-graphite/10 dark:border-white/10 p-8 bg-white/70 backdrop-blur-md transition-all duration-400 hover:border-charcoal dark:hover:border-charcoal group">
+                        <span class="font-euro-extd text-4xl text-charcoal block mb-2 transition-transform group-hover:translate-x-1">100+</span>
+                        <h4 class="font-euro-extd text-sm uppercase text-graphite transition-colors duration-400 mb-2" data-i18n-pt="Físicos Reconstruídos" data-i18n-en="Rebuilt Physiques">Físicos Reconstruídos</h4>
+                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia." data-i18n-en="Surgical planning specifically designed to bypass genetic limitations and maximize hypertrophy.">Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia.</p>
+                    </div>
+                    
+                    <!-- Cartão 2 -->
+                    <div class="border border-graphite/10 dark:border-white/10 p-8 bg-white/70 backdrop-blur-md transition-all duration-400 hover:border-charcoal dark:hover:border-charcoal group">
+                        <span class="font-euro-extd text-4xl text-battleship block mb-2 transition-transform group-hover:translate-x-1">100%</span>
+                        <h4 class="font-euro-extd text-sm uppercase text-graphite transition-colors duration-400 mb-2" data-i18n-pt="Metodologia Científica" data-i18n-en="Scientific Methodology">Metodologia Científica</h4>
+                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Corte total de mitos do ginásio. Aplicação prática de biomecânica avançada e dados empíricos estruturados." data-i18n-en="Total cut of gym myths. Practical application of advanced biomechanics and structured empirical data.">Corte total de mitos do ginásio. Aplicação prática de biomecânica avançada e dados empíricos estruturados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-graphite/10 transition-colors duration-400 py-10 relative z-20">
+        <div class="max-w-[1800px] mx-auto px-6 text-center">
+            <p class="font-euro text-[10px] uppercase tracking-[0.6em] text-graphite dark:text-pure-white transition-colors duration-400 font-black" data-i18n-pt="© 2024 Coach Sequeira - O esforço é o melhor talento." data-i18n-en="© 2024 Coach Sequeira - Effort is the best talent.">© 2024 Coach Sequeira - O esforço é o melhor talento.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS MÁGICOS -->
+    <script>
+        // 1. SISTEMA DE DARK/LIGHT MODE (TEMA)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        }
+
+        // Verifica o tema na memória ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                if(themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            }
+        });
+
+        // 2. SISTEMA DE TRADUÇÃO DINÂMICA
+        let currentLang = 'pt';
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            document.documentElement.lang = currentLang; // Ajuda no SEO
+            document.getElementById('lang-btn').innerText = currentLang === 'pt' ? 'EN' : 'PT';
+
+            const elementsToTranslate = document.querySelectorAll('[data-i18n-pt]');
+            elementsToTranslate.forEach(el => {
+                if (currentLang === 'pt') {
+                    el.innerHTML = el.getAttribute('data-i18n-pt');
+                } else {
+                    el.innerHTML = el.getAttribute('data-i18n-en');
+                }
+            });
+        }
+
+        // 3. FUNÇÃO DO ACORDEÃO
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const parent = element.parentElement;
+            
+            if (content.style.maxHeight) { 
+                content.style.maxHeight = null; 
+                parent.classList.remove('accordion-active'); 
+            } else { 
+                document.querySelectorAll('.accordion-content').forEach((item) => { 
+                    item.style.maxHeight = null; 
+                    item.parentElement.classList.remove('accordion-active'); 
+                }); 
+                content.style.maxHeight = content.scrollHeight + "px"; 
+                parent.classList.add('accordion-active'); 
+            }
+        }
+
+        // 4. AUTOPLAY E SCROLL DO CARROSSEL DE VÍDEOS
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelectorAll('.video-slide');
+            const videos = document.querySelectorAll('.video-slide video');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target.querySelector('video');
+                    
+                    if (entry.isIntersecting) {
+                        if (video && video.paused) {
+                            video.play().catch(e => console.log("Autoplay bloqueado pelo browser:", e));
+                        }
+                    } else {
+                        if (video && !video.paused) {
+                            video.pause();
+                            video.currentTime = 0; 
+                        }
+                    }
+                });
+            }, { 
+                threshold: 0.6 
+            });
+
+            slides.forEach(slide => observer.observe(slide));
+
+            videos.forEach((video, index) => {
+                video.addEventListener('ended', () => {
+                    let nextIndex = index + 1;
+                    if (nextIndex >= slides.length) { nextIndex = 0; }
+                    const nextSlide = slides[nextIndex];
+                    
+                    nextSlide.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest', 
+                        inline: 'center' 
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
