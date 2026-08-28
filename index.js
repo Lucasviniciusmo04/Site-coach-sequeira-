@@ -7,7 +7,6 @@ function toggleTheme() {
     const html = document.documentElement;
     const themeIcon = document.getElementById('theme-icon');
     
-    // Se já estiver escuro, muda para claro
     if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         localStorage.setItem('theme', 'light');
@@ -16,7 +15,6 @@ function toggleTheme() {
             themeIcon.classList.add('fa-moon');
         }
     } else {
-        // Se estiver claro, muda para escuro
         html.classList.add('dark');
         localStorage.setItem('theme', 'dark');
         if(themeIcon) {
@@ -26,7 +24,6 @@ function toggleTheme() {
     }
 }
 
-// Verifica o tema guardado assim que a página carrega
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const themeIcon = document.getElementById('theme-icon');
@@ -119,7 +116,7 @@ if(athletesContainer) {
     });
 }
 
-// THE VISION - LIGHT LEAK BRANCO/PRATA (WHITE ALUMINIUM) E PARALLAX
+// THE VISION - LIGHT LEAK BRANCO/PRATA E PARALLAX
 const visionSection = document.querySelector('#vision-reveal');
 const visionWrapper = document.querySelector('#vision-img-wrapper');
 const visionImg = document.querySelector('#vision-img');
@@ -211,5 +208,55 @@ if(achievCards.length > 0) {
                 }
             }
         );
+    });
+} 
+
+// ==========================================
+// 4. EFEITO STORE-REVEAL (ENTRADA E SAÍDA DOS CARDS E TÍTULOS)
+// ==========================================
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            // Entra no ecrã -> Ativa a animação original
+            entry.target.classList.add('active');
+        } else {
+            // Sai do ecrã -> Remove a classe para repetir perfeitamente
+            entry.target.classList.remove('active');
+        }
+    });
+}, { 
+    threshold: 0.10, 
+    rootMargin: "0px 0px -50px 0px"
+});
+
+// Aplica a todos os elementos com a classe .store-reveal (Título e os 4 Cards)
+document.querySelectorAll('.store-reveal').forEach(el => {
+    revealObserver.observe(el);
+});
+// ==========================================
+// 5. EFEITO PARALLAX NAS NOVAS ABAS (VISTAS)
+// ==========================================
+// Encontra todas as galerias parallax dentro das tuas vistas
+const galleries = gsap.utils.toArray('.parallax-gallery-section');
+
+if (galleries.length > 0) {
+    galleries.forEach(gallery => {
+        // Encontra as imagens flutuantes DENTRO dessa galeria específica
+        const photos = gallery.querySelectorAll('.floating-photo');
+        
+        photos.forEach(photo => {
+            const speed = photo.getAttribute('data-speed') || 1;
+            
+            gsap.to(photo, {
+                y: () => -window.innerHeight * speed, 
+                ease: "none",
+                scrollTrigger: {
+                    trigger: gallery,
+                    start: "top bottom", 
+                    end: "bottom top",   
+                    scrub: 1.5 // Atrasa um bocadinho o movimento para ficar super suave
+                }
+            });
+        });
     });
 }

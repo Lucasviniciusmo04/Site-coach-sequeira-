@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindset | Coach Sequeira</title>
+    <title>Nutrição | Coach Sequeira</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -40,8 +40,8 @@
         html.dark .logo-wordmark .text-charcoal { color: #627A5C; }
 
         /* FONTES */
-        @font-face { font-family: 'Eurostile'; src: url('fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: 'Eurostile Extended'; src: url('fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Eurostile'; src: url('../fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Eurostile Extended'; src: url('../fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
         
         body { font-family: 'Eurostile', sans-serif; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
         
@@ -62,32 +62,41 @@
         /* ESCONDER A BARRA DE SCROLL NO CARROSSEL */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Indicador de Som (Estilo TikTok/Reels) */
+        .sound-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            z-index: 20;
+            pointer-events-none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body class="antialiased bg-white text-graphite">
 
-    <!-- HEADER COM BOTÕES (IDIOMA + MODO ESCURO) -->
     <header class="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur-md border-b border-graphite/5 transition-colors duration-400">
         <div class="max-w-[1800px] mx-auto px-6 h-20 flex justify-between items-center">
-            <!-- Link do Logo corrigido para regressar à raiz (../) -->
             <a href="../index.html" class="logo-wordmark text-2xl flex items-center gap-2 transition-transform hover:scale-105">
                 <span class="text-graphite transition-colors">COACH</span><span class="text-charcoal transition-colors">SEQUEIRA</span>
             </a>
             
             <nav class="flex items-center gap-4 md:gap-6 text-[10px] font-euro font-bold uppercase tracking-[0.3em]">
-                <!-- Botão Voltar Corrigido para ../index.html#services -->
                 <a href="../index.html#services" class="text-graphite hover:text-charcoal transition-colors flex items-center dark:text-pure-white" data-i18n-pt='<i class="fa-solid fa-arrow-left mr-2"></i> Voltar' data-i18n-en='<i class="fa-solid fa-arrow-left mr-2"></i> Back'>
                     <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
                 </a>
                 
-                <!-- BLOCO DE AÇÕES -->
                 <div class="flex items-center gap-2 md:gap-4 border-l border-graphite/20 dark:border-white/20 pl-4 ml-2">
-                    <!-- BOTÃO DE TRADUÇÃO -->
                     <button onclick="toggleLanguage()" id="lang-btn" aria-label="Alterar Idioma" class="text-graphite dark:text-pure-white font-euro-extd text-[10px] tracking-widest border border-graphite/20 dark:border-white/20 px-3 py-1.5 rounded-sm hover:bg-graphite hover:text-white dark:hover:bg-white dark:hover:text-graphite transition-colors cursor-pointer">
                         EN
                     </button>
                     
-                    <!-- BOTÃO MODO ESCURO/CLARO -->
                     <button onclick="toggleTheme()" aria-label="Alterar Tema" class="text-graphite dark:text-pure-white text-[16px] px-2 py-1.5 hover:text-charcoal transition-colors cursor-pointer">
                         <i id="theme-icon" class="fa-solid fa-moon"></i>
                     </button>
@@ -98,58 +107,56 @@
 
     <main class="pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
         
-        <!-- CABEÇALHO DA SECÇÃO -->
         <div class="mb-20 max-w-4xl">
             <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="O MÉTODO SEQUEIRA" data-i18n-en="THE SEQUEIRA METHOD">O MÉTODO SEQUEIRA</p>
             
-            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-8" data-i18n-pt="Elite <span class='text-charcoal'>Mindset</span>" data-i18n-en="Elite <span class='text-charcoal'>Mindset</span>">
-                Elite <span class="text-charcoal">Mindset</span>
+            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-8" data-i18n-pt="Precision <span class='text-charcoal'>Nutrition</span>" data-i18n-en="Precision <span class='text-charcoal'>Nutrition</span>">
+                Precision <span class="text-charcoal">Nutrition</span>
             </h1>
             
             <div class="border-l-4 border-charcoal pl-6 py-2">
-                <h3 class="font-euro-extd text-2xl uppercase text-graphite transition-colors duration-400 mb-3" data-i18n-pt="Mindset: A Fundação da Excelência" data-i18n-en="Mindset: The Foundation of Excellence">
-                    Mindset: A Fundação da Excelência
+                <h3 class="font-euro-extd text-2xl uppercase text-graphite transition-colors duration-400 mb-3" data-i18n-pt="Nutrição: A Ciência do Sucesso" data-i18n-en="Nutrition: The Science of Success">
+                    Nutrição: A Ciência do Sucesso
                 </h3>
-                <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-lg md:text-xl leading-relaxed" data-i18n-pt='No reino do culturismo natural, a tua resiliência psicológica é o teu maior trunfo. A verdadeira transformação começa muito antes de pisares o ginásio; começa com uma disciplina inabalável que se sobrepõe à motivação passageira. O meu coaching foca-se no desenvolvimento de uma mentalidade de elite, ensinando-te a dominar o "jogo longo" e a superar as barreiras mentais de uma preparação rigorosa. <strong class="text-charcoal dark:text-[#627A5C]">Não construímos apenas corpos; forjamos o caráter necessário para os sustentar.</strong>' data-i18n-en='In the realm of natural bodybuilding, your psychological resilience is your greatest asset. True transformation begins long before you step into the gym; it starts with an unshakeable discipline that overrides fleeting motivation. My coaching focuses on developing an elite mentality, teaching you to master the "long game" and overcome the mental barriers of rigorous prep. <strong class="text-charcoal dark:text-[#627A5C]">We don’t just build bodies; we forge the character required to sustain them.</strong>'>
-                    No reino do culturismo natural, a tua resiliência psicológica é o teu maior trunfo. A verdadeira transformação começa muito antes de pisares o ginásio; começa com uma disciplina inabalável que se sobrepõe à motivação passageira. O meu coaching foca-se no desenvolvimento de uma mentalidade de elite, ensinando-te a dominar o "jogo longo" e a superar as barreiras mentais de uma preparação rigorosa. 
-                    <strong class="text-charcoal dark:text-[#627A5C]">Não construímos apenas corpos; forjamos o caráter necessário para os sustentar.</strong>
+                <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-lg md:text-xl leading-relaxed" data-i18n-pt='No culturismo natural, a nutrição é a ciência que dita os resultados. A tua transformação física não acontece por acaso; é o reflexo de uma estratégia metabólica precisa. O meu método foca-se na otimização de cada caloria, garantindo que queimas gordura de forma eficiente enquanto preservas a massa muscular. <strong class="text-charcoal dark:text-[#627A5C]">Não fazemos dietas restritivas cegas; construímos máquinas metabólicas.</strong>' data-i18n-en='In natural bodybuilding, nutrition is the science that dictates results. Your physical transformation does not happen by chance; it is the reflection of a precise metabolic strategy. My method focuses on optimizing every calorie, ensuring you burn fat efficiently while preserving muscle mass. <strong class="text-charcoal dark:text-[#627A5C]">We don’t do blind restrictive diets; we build metabolic machines.</strong>'>
+                    No culturismo natural, a nutrição é a ciência que dita os resultados. A tua transformação física não acontece por acaso; é o reflexo de uma estratégia metabólica precisa. O meu método foca-se na otimização de cada caloria, garantindo que queimas gordura de forma eficiente enquanto preservas a massa muscular. 
+                    <strong class="text-charcoal dark:text-[#627A5C]">Não fazemos dietas restritivas cegas; construímos máquinas metabólicas.</strong>
                 </p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
-            <!-- COLUNA ESQUERDA: ACORDEÃO -->
             <div>
-                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6" data-i18n-pt="Pilares da Mentalidade" data-i18n-en="Mindset Pillars">Pilares da Mentalidade</h3>
+                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6" data-i18n-pt="Pilares da Nutrição" data-i18n-en="Nutrition Pillars">Pilares da Nutrição</h3>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Disciplina vs. Motivação" data-i18n-en="Discipline vs. Motivation">Disciplina vs. Motivação</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Estratégia Metabólica" data-i18n-en="Metabolic Strategy">Estratégia Metabólica</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A motivação desaparece nos dias difíceis. A disciplina é um sistema inquebrável. Construímos rotinas que executam o plano independentemente do humor." data-i18n-en="Motivation fades on difficult days. Discipline is an unbreakable system. We build routines that execute the plan regardless of mood.">A motivação desaparece nos dias difíceis. A disciplina é um sistema inquebrável. Construímos rotinas que executam o plano independentemente do humor.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Cálculo milimétrico de macronutrientes adaptado à tua fase (Bulking ou Cutting), garantindo que o teu corpo tem exatamente a proporção que precisa para crescer ou secar." data-i18n-en="Millimetric calculation of macronutrients adapted to your phase (Bulking or Cutting), ensuring your body has exactly the proportion it needs to grow or shred.">Cálculo milimétrico de macronutrientes adaptado à tua fase (Bulking ou Cutting), garantindo que o teu corpo tem exatamente a proporção que precisa para crescer ou secar.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Foco no Processo" data-i18n-en="Focus on the Process">Foco no Processo</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Timing Nutricional" data-i18n-en="Nutrient Timing">Timing Nutricional</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Não foques apenas no espelho. Ensinamos a extrair gratificação da rotina, tornando a execução a tua maior vitória diária." data-i18n-en="Don't just focus on the mirror. We teach you to extract gratification from the routine, making execution your greatest daily victory.">Não foques apenas no espelho. Ensinamos a extrair gratificação da rotina, tornando a execução a tua maior vitória diária.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Não interessa apenas o que comes, mas quando comes. Otimizamos a distribuição de nutrientes em torno do treino para maximizar a performance, o pump e a recuperação muscular." data-i18n-en="It's not just what you eat, but when you eat. We optimize nutrient distribution around training to maximize performance, pump, and muscle recovery.">Não interessa apenas o que comes, mas quando comes. Otimizamos a distribuição de nutrientes em torno do treino para maximizar a performance, o pump e a recuperação muscular.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Gestão de Fadiga Mental" data-i18n-en="Mental Fatigue Management">Gestão de Fadiga Mental</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Biofeedback & Ajustes" data-i18n-en="Biofeedback & Adjustments">Biofeedback & Ajustes</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Fornecemos ferramentas de resiliência e foco para lidar com quebras de energia sem perder o rumo estratégico durante uma preparação." data-i18n-en="We provide resilience and focus tools to deal with energy drops without losing strategic direction during a contest prep.">Fornecemos ferramentas de resiliência e foco para lidar com quebras de energia sem perder o rumo estratégico durante uma preparação.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="O corpo fala. Monitorizamos o teu peso, retenção, digestão e níveis de energia semanalmente para fazer ajustes de calorias precisos e em tempo real." data-i18n-en="The body speaks. We monitor your weight, retention, digestion, and energy levels weekly to make precise real-time calorie adjustments.">O corpo fala. Monitorizamos o teu peso, retenção, digestão e níveis de energia semanalmente para fazer ajustes de calorias precisos e em tempo real.</p>
                     </div>
                 </div>
                 
@@ -158,7 +165,6 @@
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA: CARROSSEL DE VÍDEOS -->
             <div class="h-full flex items-start w-full overflow-hidden">
                 <div class="w-full relative">
                     
@@ -168,42 +174,29 @@
                         </p>
                     </div>
 
-                    <!-- CONTAINER DO CARROSSEL HORIZONTAL -->
-                    <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6 cursor-grab active:cursor-grabbing">
+                    <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6">
                         
-                        <!-- VÍDEO 01 (Caminho corrigido com ../) -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50 2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
+                            <video src="videos.index/videonutri1.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
+                            <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
                                 <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 01" data-i18n-en="Episode 01">Episódio 01</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Disciplina" data-i18n-en="Discipline">Disciplina</p>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="A Ciência do Combustível" data-i18n-en="The Science of Fuel">A Ciência do Combustível</p>
                             </div>
                         </div>
 
-                        <!-- VÍDEO 02 (Caminho corrigido com ../) -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
+                            <video src="videos.index/videonutri2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
+                            <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
                                 <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 02" data-i18n-en="Episode 02">Episódio 02</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Foco no Processo" data-i18n-en="Focus on the Process">Foco no Processo</p>
-                            </div>
-                        </div>
-
-                        <!-- VÍDEO 03 (Caminho corrigido com ../) -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <video src="../videos.index/VIDEO-2026-07-21-21-30-20.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
-                            
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-
-                            <div class="absolute bottom-6 left-6 pointer-events-none z-10">
-                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 03" data-i18n-en="Episode 03">Episódio 03</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="O Jogo Longo" data-i18n-en="The Long Game">O Jogo Longo</p>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Otimização Metabólica" data-i18n-en="Metabolic Optimization">Otimização Metabólica</p>
                             </div>
                         </div>
 
@@ -214,16 +207,14 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-white border-t border-graphite/10 transition-colors duration-400 py-10 relative z-20">
         <div class="max-w-[1800px] mx-auto px-6 text-center">
             <p class="font-euro text-[10px] uppercase tracking-[0.6em] text-graphite dark:text-pure-white transition-colors duration-400 font-black" data-i18n-pt="© 2024 Coach Sequeira - O esforço é o melhor talento." data-i18n-en="© 2024 Coach Sequeira - Effort is the best talent.">© 2024 Coach Sequeira - O esforço é o melhor talento.</p>
         </div>
     </footer>
 
-    <!-- SCRIPTS MÁGICOS -->
     <script>
-        // 1. SISTEMA DE DARK/LIGHT MODE (TEMA)
+        // 1. SISTEMA DE DARK/LIGHT MODE
         function toggleTheme() {
             const html = document.documentElement;
             const themeIcon = document.getElementById('theme-icon');
@@ -241,38 +232,30 @@
             }
         }
 
-        // Verifica o tema na memória ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             const themeIcon = document.getElementById('theme-icon');
-            
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
-                if(themeIcon) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                }
+                if(themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
             }
         });
 
-        // 2. SISTEMA DE TRADUÇÃO DINÂMICA
+        // 2. SISTEMA DE TRADUÇÃO
         let currentLang = 'pt';
         function toggleLanguage() {
             currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            document.documentElement.lang = currentLang; // Ajuda no SEO
+            document.documentElement.lang = currentLang;
             document.getElementById('lang-btn').innerText = currentLang === 'pt' ? 'EN' : 'PT';
 
             const elementsToTranslate = document.querySelectorAll('[data-i18n-pt]');
             elementsToTranslate.forEach(el => {
-                if (currentLang === 'pt') {
-                    el.innerHTML = el.getAttribute('data-i18n-pt');
-                } else {
-                    el.innerHTML = el.getAttribute('data-i18n-en');
-                }
+                if (currentLang === 'pt') { el.innerHTML = el.getAttribute('data-i18n-pt'); } 
+                else { el.innerHTML = el.getAttribute('data-i18n-en'); }
             });
         }
 
-        // 3. FUNÇÃO DO ACORDEÃO (Esquerda)
+        // 3. FUNÇÃO DO ACORDEÃO
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
             const parent = element.parentElement;
@@ -289,11 +272,35 @@
             }
         }
 
-        // 4. AUTOPLAY E SCROLL DO CARROSSEL DE VÍDEOS (Direita)
+        // 4. LÓGICA DO CARROSSEL DE VÍDEOS (Autoplay + Mute/Unmute ao Clicar)
         document.addEventListener("DOMContentLoaded", () => {
             const slides = document.querySelectorAll('.video-slide');
             const videos = document.querySelectorAll('.video-slide video');
 
+            // Permite MUTE/UNMUTE ao clicar no vídeo
+            slides.forEach(slide => {
+                const video = slide.querySelector('video');
+                const indicator = slide.querySelector('.sound-indicator');
+                const icon = indicator.querySelector('i');
+
+                slide.addEventListener('click', () => {
+                    if(video.muted) {
+                        video.muted = false;
+                        icon.classList.remove('fa-volume-xmark');
+                        icon.classList.add('fa-volume-high');
+                    } else {
+                        video.muted = true;
+                        icon.classList.remove('fa-volume-high');
+                        icon.classList.add('fa-volume-xmark');
+                    }
+                    
+                    // Mostra o ícone brevemente
+                    indicator.style.opacity = '1';
+                    setTimeout(() => { indicator.style.opacity = '0'; }, 1000);
+                });
+            });
+
+            // Intersection Observer para Autoplay quando visível
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const video = entry.target.querySelector('video');
@@ -306,6 +313,8 @@
                         if (video && !video.paused) {
                             video.pause();
                             video.currentTime = 0; 
+                            // Volta a colocar mudo se sair do ecrã para evitar choque sonoro ao voltar
+                            video.muted = true; 
                         }
                     }
                 });
@@ -315,6 +324,7 @@
 
             slides.forEach(slide => observer.observe(slide));
 
+            // Quando um vídeo acaba, passa suavemente para o próximo
             videos.forEach((video, index) => {
                 video.addEventListener('ended', () => {
                     let nextIndex = index + 1;

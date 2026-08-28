@@ -126,24 +126,16 @@
                     <a href="#athletes-gallery" class="text-graphite hover:text-charcoal transition-colors" data-i18n-pt="Equipa" data-i18n-en="Team">Equipa</a>
                     <a href="#services" class="text-graphite hover:text-charcoal transition-colors" data-i18n-pt="Serviços" data-i18n-en="Services">Serviços</a>
                     <a href="#achievements" class="text-graphite hover:text-charcoal transition-colors" data-i18n-pt="Conquistas" data-i18n-en="Achievements">Conquistas</a>
-                    <a href="#store" class="text-charcoal font-bold" data-i18n-pt="Loja" data-i18n-en="Store">Loja</a>
                 </nav>
                 
-                <!-- BLOCCO DE AÇÕES (Tradutor + Dark Mode + Carrinho) -->
-                <div class="flex items-center gap-3 border-l border-graphite/20 pl-4 ml-2">
-                    
-                    <!-- Botão Tradução -->
+                <!-- BLOCO DE AÇÕES -->
+                <div class="flex items-center gap-3 border-l border-graphite/25 pl-4 ml-2">
                     <button onclick="toggleLanguage()" id="lang-btn" aria-label="Alterar Idioma" class="text-graphite dark:text-pure-white font-euro-extd text-[10px] tracking-widest border border-graphite/20 dark:border-white/20 px-2 md:px-3 py-1.5 rounded-sm hover:bg-graphite dark:hover:bg-white hover:text-white dark:hover:text-graphite transition-colors cursor-pointer">
                         EN
                     </button>
-                    
-                    <!-- Botão Dark/Light Mode -->
                     <button onclick="toggleTheme()" aria-label="Alterar Tema" class="text-graphite dark:text-pure-white text-[16px] px-2 py-1.5 hover:text-charcoal transition-colors cursor-pointer">
                         <i id="theme-icon" class="fa-solid fa-moon"></i>
                     </button>
-
-                   
-
                 </div>
             </div>
         </div>
@@ -381,22 +373,16 @@
             </div>
         </section>
 
-        <!-- VISION SECÇÃO (ZOOM OUT, VIBRANTE E NÍTIDO) -->
+        <!-- VISION SECÇÃO -->
         <section id="vision-reveal" class="relative h-screen w-full bg-[#3B4A37] flex items-center justify-center overflow-hidden border-t border-white/5 z-20">
             <div class="noise-overlay"></div>
-            
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                 <h2 class="text-[15vw] font-euro-extd italic leading-none text-pure-white/5 uppercase tracking-tighter mix-blend-overlay" data-i18n-pt="VISÃO" data-i18n-en="VISION">VISÃO</h2>
             </div>
-            
             <div id="vision-img-wrapper" class="relative z-10 w-full h-[60vh] md:w-[60vw] md:h-[70vh] flex items-center justify-center overflow-hidden border border-pure-white/10 shadow-2xl group cursor-crosshair bg-black">
-                <!-- Efeito Zoom-Out cristalino e cores vivas -->
                 <img id="vision-img" src="img.sequeira/DSCF7435-10.jpg" class="w-full h-full object-cover scale-110 grayscale contrast-125 brightness-50 group-hover:grayscale-0 group-hover:contrast-125 group-hover:brightness-105 group-hover:saturate-150 group-hover:scale-100 transition-all duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Sessão Fotográfica Visão Coach Sequeira">
-                
-                <!-- Vinheta Escura Focada -->
                 <div class="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.6) 100%);"></div>
             </div>
-            
             <div id="vision-ui-badge" class="absolute z-20 bottom-12 right-12 md:bottom-20 md:right-20 px-6 py-3 bg-black/40 backdrop-blur-md border border-white/20 rounded-sm opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none">
                 <p class="font-euro text-pure-white text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-bold drop-shadow-md" data-i18n-pt="Padrões Intransigentes." data-i18n-en="Uncompromising Standards.">Padrões Intransigentes.</p>
             </div>
@@ -500,92 +486,74 @@
             </div>
         </section>
 
-        <!-- SECÇÃO STORE -->
-        <section id="store" class="bg-white pt-16 pb-32 relative z-20 border-t border-graphite/10 overflow-hidden">
-            <div class="w-full bg-graphite py-4 overflow-hidden border-y border-charcoal/30 relative z-20 store-reveal">
-                <div class="marquee-row">
-                    <div class="marquee-row-content text-pure-white text-sm md:text-xl font-bold tracking-[0.2em] opacity-90" style="animation: scroll-sponsors-ltr 15s linear infinite;">
-                        <span data-i18n-pt="EDIÇÃO LIMITADA" data-i18n-en="LIMITED EDITION">EDIÇÃO LIMITADA</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="LANÇAMENTO EXCLUSIVO" data-i18n-en="EXCLUSIVE DROP">LANÇAMENTO EXCLUSIVO</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="EQUIPAMENTO OFICIAL" data-i18n-en="OFFICIAL GEAR">EQUIPAMENTO OFICIAL</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="EDIÇÃO LIMITADA" data-i18n-en="LIMITED EDITION">EDIÇÃO LIMITADA</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="LANÇAMENTO EXCLUSIVO" data-i18n-en="EXCLUSIVE DROP">LANÇAMENTO EXCLUSIVO</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="EQUIPAMENTO OFICIAL" data-i18n-en="OFFICIAL GEAR">EQUIPAMENTO OFICIAL</span> <span class="text-charcoal">•</span>
-                        <!-- Clones para fluidez pura -->
-                        <span data-i18n-pt="EDIÇÃO LIMITADA" data-i18n-en="LIMITED EDITION">EDIÇÃO LIMITADA</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="LANÇAMENTO EXCLUSIVO" data-i18n-en="EXCLUSIVE DROP">LANÇAMENTO EXCLUSIVO</span> <span class="text-charcoal">•</span> 
-                        <span data-i18n-pt="EQUIPAMENTO OFICIAL" data-i18n-en="OFFICIAL GEAR">EQUIPAMENTO OFICIAL</span>
-                    </div>
-                </div>
-            </div>
+        <!-- SECÇÃO LIFE AS AN ATHLETE (Garante links funcionais para Preparação e Competição) -->
+        <section id="athlete-life" class="bg-white py-24 lg:pb-48 px-6 md:px-12 relative z-20 border-t border-graphite/10 overflow-hidden">
+            <div class="max-w-[1600px] mx-auto">
+                
+                <header class="mb-20 max-w-4xl mx-auto text-center store-reveal">
+                    <p class="font-euro text-battleship text-[10px] md:text-xs font-black uppercase tracking-[0.5em] mb-4">Alta Performance</p>
+                    <h2 class="text-5xl md:text-8xl font-euro-extd italic uppercase text-graphite mb-6 leading-none tracking-tighter">
+                        LIFE AS AN <span class="text-charcoal">ATHLETE</span>
+                    </h2>
+                    <p class="font-euro text-battleship text-xs md:text-sm uppercase tracking-[0.25em] font-semibold leading-relaxed">
+                        O talento é apenas o ponto de partida. O alto rendimento exige anos de preparação física, mental e atenção obsessiva a cada detalhe antes, durante e após a competição.
+                    </p>
+                </header>
 
-            <div class="max-w-[1600px] mx-auto px-6 mt-20 relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 store-reveal" style="transition-delay: 100ms;">
-                    <div>
-                        <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.5em] mb-4" data-i18n-pt="Equipamento Oficial" data-i18n-en="Official Gear">Equipamento Oficial</p>
-                        <h2 class="text-6xl md:text-8xl font-euro-extd italic leading-none uppercase tracking-tighter text-graphite" data-i18n-pt="O <span class='text-charcoal'>LANÇAMENTO</span>" data-i18n-en="THE <span class='text-charcoal'>DROP</span>">
-                            O <span class="text-charcoal">LANÇAMENTO</span>
-                        </h2>
-                    </div>
-                    <a href="#" class="group flex items-center gap-3 pb-2 border-b-2 border-graphite hover:border-charcoal transition-all">
-                        <span class="font-euro-extd text-xs uppercase tracking-widest text-graphite group-hover:text-charcoal transition-colors" data-i18n-pt="Ver Loja Completa" data-i18n-en="View Full Store">Ver Loja Completa</span>
-                        <i class="fa-solid fa-arrow-right text-graphite group-hover:text-charcoal transition-transform group-hover:translate-x-2"></i>
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-                    <!-- Produto 01 -->
-                    <div class="group cursor-pointer store-reveal" style="transition-delay: 200ms;">
-                        <div class="relative w-full aspect-[4/5] bg-[#F5F5F5] overflow-hidden flex items-center justify-center mb-6 transition-colors duration-500 group-hover:bg-[#EAEAEA]">
-                            <div class="absolute top-4 left-4 z-20 bg-black text-white text-[10px] font-euro-extd uppercase tracking-[0.2em] px-3 py-1" data-i18n-pt="LIMITADO" data-i18n-en="LIMITED">LIMITADO</div>
-                            <img src="img/tshirt-mockup.png" alt="Oversized Tee V1 Produto" class="w-[85%] h-auto object-contain transition-transform duration-700 group-hover:scale-110 z-10 drop-shadow-xl">
-                            <div class="absolute bottom-0 left-0 w-full transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
-                                <button class="w-full py-5 bg-black text-white font-euro-extd text-xs uppercase tracking-[0.2em] hover:bg-charcoal transition-colors">
-                                    <span data-i18n-pt="Comprar Agora" data-i18n-en="Shop Now">Comprar Agora</span>
-                                </button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+                    
+                    <!-- Card 01: Treino -->
+                    <div class="store-reveal lg:mt-0 h-full" style="transition-delay: 150ms;">
+                        <a href="atleta-treino.html" class="group flex flex-col h-full relative bg-[#1a1a1a] hover:bg-[#2d2d2d] transition-colors duration-500 rounded-sm p-6 justify-between border border-graphite/25 shadow-xl overflow-hidden focus:outline-none">
+                            <div class="relative w-full aspect-[4/5] bg-graphite/40 overflow-hidden mb-6 rounded-sm flex items-center justify-center">
+                                <img src="img.sequeira/DSCF0648-13.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110 z-10">
                             </div>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <p class="font-euro text-battleship text-[10px] font-bold uppercase tracking-[0.2em] mb-2" data-i18n-pt="Vestuário" data-i18n-en="Apparel">Vestuário</p>
-                            <h3 class="font-euro-extd text-xl uppercase text-graphite mb-2 group-hover:text-charcoal transition-colors">Oversized Tee V1</h3>
-                            <span class="font-euro text-lg text-graphite font-bold">€35.00</span>
-                        </div>
+                            <div>
+                                <h3 class="font-euro-extd text-2xl text-pure-white italic uppercase tracking-tighter mb-2">TREINO</h3>
+                                <p class="font-euro text-aluminium text-xs uppercase tracking-wider leading-relaxed">Estímulo constante, superação de limites e disciplina diária.</p>
+                            </div>
+                        </a>
                     </div>
 
-                    <!-- Produto 02 -->
-                    <div class="group cursor-pointer store-reveal" style="transition-delay: 350ms;">
-                        <div class="relative w-full aspect-[4/5] bg-[#F5F5F5] overflow-hidden flex items-center justify-center mb-6 transition-colors duration-500 group-hover:bg-[#EAEAEA]">
-                            <div class="absolute top-4 left-4 z-20 bg-black text-white text-[10px] font-euro-extd uppercase tracking-[0.2em] px-3 py-1" data-i18n-pt="MAIS VENDIDO" data-i18n-en="BEST SELLER">MAIS VENDIDO</div>
-                            <img src="img/ebook-mockup.png" alt="Contest Prep Manual Ebook" class="w-[75%] h-auto object-contain transition-transform duration-700 group-hover:scale-110 z-10 drop-shadow-xl">
-                            <div class="absolute bottom-0 left-0 w-full transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
-                                <button class="w-full py-5 bg-black text-white font-euro-extd text-xs uppercase tracking-[0.2em] hover:bg-charcoal transition-colors">
-                                    <span data-i18n-pt="Comprar Digital" data-i18n-en="Buy Digital">Comprar Digital</span>
-                                </button>
+                    <!-- Card 02: Preparação -->
+                    <div class="store-reveal lg:mt-12 h-full" style="transition-delay: 300ms;">
+                        <a href="atleta-preparacao.html" class="group flex flex-col h-full relative bg-[#1a1a1a] hover:bg-[#2d2d2d] transition-colors duration-500 rounded-sm p-6 justify-between border border-graphite/25 shadow-xl overflow-hidden focus:outline-none">
+                            <div class="relative w-full aspect-[4/5] bg-graphite/40 overflow-hidden mb-6 rounded-sm flex items-center justify-center">
+                                <img src="img.sequeira/champ_01.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110 z-10">
                             </div>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <p class="font-euro text-battleship text-[10px] font-bold uppercase tracking-[0.2em] mb-2" data-i18n-pt="E-Book" data-i18n-en="E-Book">E-Book</p>
-                            <h3 class="font-euro-extd text-xl uppercase text-graphite mb-2 group-hover:text-charcoal transition-colors">The Prep Manual</h3>
-                            <span class="font-euro text-lg text-graphite font-bold">€49.00</span>
-                        </div>
+                            <div>
+                                <h3 class="font-euro-extd text-2xl text-pure-white italic uppercase tracking-tighter mb-2">PREPARAÇÃO</h3>
+                                <p class="font-euro text-aluminium text-xs uppercase tracking-wider leading-relaxed">Planeamento minucioso, precisão nutricional e foco cirúrgico.</p>
+                            </div>
+                        </a>
                     </div>
 
-                    <!-- Produto 03 -->
-                    <div class="group cursor-pointer store-reveal" style="transition-delay: 500ms;">
-                        <div class="relative w-full aspect-[4/5] bg-[#F5F5F5] overflow-hidden flex items-center justify-center mb-6 transition-colors duration-500 group-hover:bg-[#EAEAEA]">
-                            <img src="img/shaker-mockup.png" alt="Steel Shaker Produto" class="w-[65%] h-auto object-contain transition-transform duration-700 group-hover:scale-110 z-10 drop-shadow-xl">
-                            <div class="absolute bottom-0 left-0 w-full transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
-                                <button class="w-full py-5 bg-black text-white font-euro-extd text-xs uppercase tracking-[0.2em] hover:bg-charcoal transition-colors">
-                                    <span data-i18n-pt="Comprar Agora" data-i18n-en="Shop Now">Comprar Agora</span>
-                                </button>
+                    <!-- Card 03: Competição -->
+                    <div class="store-reveal lg:mt-24 h-full" style="transition-delay: 450ms;">
+                        <a href="atleta-competicao.html" class="group flex flex-col h-full relative bg-[#3B4A37] hover:bg-[#4d6148] transition-colors duration-500 rounded-sm p-6 justify-between border border-charcoal shadow-xl overflow-hidden focus:outline-none">
+                            <div class="relative w-full aspect-[4/5] bg-graphite/40 overflow-hidden mb-6 rounded-sm flex items-center justify-center">
+                                <img src="img.sequeira/champ_03.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110 z-10">
                             </div>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <p class="font-euro text-battleship text-[10px] font-bold uppercase tracking-[0.2em] mb-2" data-i18n-pt="Acessórios" data-i18n-en="Accessories">Acessórios</p>
-                            <h3 class="font-euro-extd text-xl uppercase text-graphite mb-2 group-hover:text-charcoal transition-colors">Steel Shaker</h3>
-                            <span class="font-euro text-lg text-graphite font-bold">€25.00</span>
-                        </div>
+                            <div>
+                                <h3 class="font-euro-extd text-2xl text-pure-white italic uppercase tracking-tighter mb-2">COMPETIÇÃO</h3>
+                                <p class="font-euro text-pure-white/85 text-xs uppercase tracking-wider leading-relaxed">O culminar de meses de trabalho sob a pressão do topo.</p>
+                            </div>
+                        </a>
                     </div>
+
+                    <!-- Card 04: Season Off -->
+                    <div class="store-reveal lg:mt-36 h-full" style="transition-delay: 600ms;">
+                        <a href="atleta-seasonoff.html" class="group flex flex-col h-full relative bg-[#1a1a1a] hover:bg-[#2d2d2d] transition-colors duration-500 rounded-sm p-6 justify-between border border-graphite/25 shadow-xl overflow-hidden focus:outline-none">
+                            <div class="relative w-full aspect-[4/5] bg-graphite/40 overflow-hidden mb-6 rounded-sm flex items-center justify-center">
+                                <img src="img.sequeira/champ_05.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110 z-10">
+                            </div>
+                            <div>
+                                <h3 class="font-euro-extd text-2xl text-pure-white italic uppercase tracking-tighter mb-2">SEASON OFF</h3>
+                                <p class="font-euro text-aluminium text-xs uppercase tracking-wider leading-relaxed">Descanso ativo, reestruturação e ganhos de massa muscular.</p>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -611,11 +579,10 @@
 
     <!-- SCRIPTS DOM DINÂMICOS -->
     <script>
-        // 1. LÓGICA DE TRADUÇÃO (SEO FRIENDLY)
         let currentLang = 'pt';
         function toggleLanguage() {
             currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            document.documentElement.lang = currentLang; // Muda o idioma da pág. para o Google
+            document.documentElement.lang = currentLang; 
             document.getElementById('lang-btn').innerText = currentLang === 'pt' ? 'EN' : 'PT';
 
             const elementsToTranslate = document.querySelectorAll('[data-i18n-pt]');
@@ -624,7 +591,6 @@
             });
         }
 
-        // 2. LÓGICA DE ENTRADA/SAÍDA DOS PRODUTOS DA LOJA (Otimizado a 60fps)
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -644,6 +610,5 @@
             });
         });
     </script>
-
 </body>
 </html>

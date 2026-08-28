@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindset | Coach Sequeira</title>
+    <title>Treino | Coach Sequeira</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -28,20 +28,21 @@
     </script>
 
     <style>
-        /* --- SISTEMA DARK MODE (ESCURO SUAVE PARA VÍDEOS) --- */
+        /* --- SISTEMA DARK MODE (ESCURO SUAVE) --- */
         html.dark body { background-color: #1E1E1E; color: #E5E5E5; }
         html.dark .bg-white, html.dark .bg-pure-white { background-color: #1E1E1E !important; }
         html.dark .text-graphite { color: #F5F5F5 !important; }
         html.dark header.bg-white\/90 { background-color: rgba(30, 30, 30, 0.9) !important; border-bottom-color: rgba(255,255,255,0.05); }
-        html.dark .border-graphite\/5, html.dark .border-graphite\/10 { border-color: rgba(255,255,255,0.05) !important; }
+        html.dark .border-graphite\/5, html.dark .border-graphite\/10, html.dark .border-graphite\/20 { border-color: rgba(255,255,255,0.05) !important; }
         html.dark .accordion-item { border-color: rgba(255,255,255,0.1); }
         html.dark .btn-militar:hover { background: #FFFFFF; color: #1E1E1E; }
         html.dark .logo-wordmark { color: #FFFFFF; }
         html.dark .logo-wordmark .text-charcoal { color: #627A5C; }
+        html.dark .bg-white\/70 { background-color: rgba(30, 30, 30, 0.7) !important; } 
 
         /* FONTES */
-        @font-face { font-family: 'Eurostile'; src: url('fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: 'Eurostile Extended'; src: url('fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Eurostile'; src: url('../fonts/Eurostile-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: 'Eurostile Extended'; src: url('../fonts/EurostileExtended-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
         
         body { font-family: 'Eurostile', sans-serif; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
         
@@ -63,6 +64,12 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* MARQUEE ANIMATION */
+        @keyframes marqueeLTR { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+        @keyframes marqueeRTL { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        .animate-marquee-ltr { display: flex; width: max-content; animation: marqueeLTR 30s linear infinite; }
+        .animate-marquee-rtl { display: flex; width: max-content; animation: marqueeRTL 25s linear infinite; }
+
         /* Indicador de Som (Estilo TikTok/Reels) */
         .sound-indicator {
             position: absolute;
@@ -81,7 +88,6 @@
 </head>
 <body class="antialiased bg-white text-graphite">
 
-    <!-- HEADER -->
     <header class="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur-md border-b border-graphite/5 transition-colors duration-400">
         <div class="max-w-[1800px] mx-auto px-6 h-20 flex justify-between items-center">
             <a href="../index.html" class="logo-wordmark text-2xl flex items-center gap-2 transition-transform hover:scale-105">
@@ -108,58 +114,56 @@
 
     <main class="pt-40 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto min-h-screen">
         
-        <!-- CABEÇALHO -->
         <div class="mb-20 max-w-4xl">
             <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="O MÉTODO SEQUEIRA" data-i18n-en="THE SEQUEIRA METHOD">O MÉTODO SEQUEIRA</p>
             
-            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-8" data-i18n-pt="Elite <span class='text-charcoal'>Mindset</span>" data-i18n-en="Elite <span class='text-charcoal'>Mindset</span>">
-                Elite <span class="text-charcoal">Mindset</span>
+            <h1 class="text-6xl md:text-[100px] font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-8" data-i18n-pt="Elite <span class='text-charcoal'>Treino</span>" data-i18n-en="Elite <span class='text-charcoal'>Training</span>">
+                Elite <span class="text-charcoal">Treino</span>
             </h1>
             
             <div class="border-l-4 border-charcoal pl-6 py-2">
-                <h3 class="font-euro-extd text-2xl uppercase text-graphite transition-colors duration-400 mb-3" data-i18n-pt="Mindset: A Fundação da Excelência" data-i18n-en="Mindset: The Foundation of Excellence">
-                    Mindset: A Fundação da Excelência
+                <h3 class="font-euro-extd text-2xl uppercase text-graphite transition-colors duration-400 mb-3" data-i18n-pt="Treino: Performance Projetada com Precisão" data-i18n-en="Training: Precision-Engineered Performance">
+                    Treino: Performance Projetada com Precisão
                 </h3>
-                <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-lg md:text-xl leading-relaxed" data-i18n-pt='No reino do culturismo natural, a tua resiliência psicológica é o teu maior trunfo. A verdadeira transformação começa muito antes de pisares o ginásio; começa com uma disciplina inabalável que se sobrepõe à motivação passageira. O meu coaching foca-se no desenvolvimento de uma mentalidade de elite, ensinando-te a dominar o "jogo longo" e a superar as barreiras mentais de uma preparação rigorosa. <strong class="text-charcoal dark:text-[#627A5C]">Não construímos apenas corpos; forjamos o caráter necessário para os sustentar.</strong>' data-i18n-en='In the realm of natural bodybuilding, your psychological resilience is your greatest asset. True transformation begins long before you step into the gym; it starts with an unshakeable discipline that overrides fleeting motivation. My coaching focuses on developing an elite mentality, teaching you to master the "long game" and overcome the mental barriers of rigorous prep. <strong class="text-charcoal dark:text-[#627A5C]">We don’t just build bodies; we forge the character required to sustain them.</strong>'>
-                    No reino do culturismo natural, a tua resiliência psicológica é o teu maior trunfo. A verdadeira transformação começa muito antes de pisares o ginásio; começa com uma disciplina inabalável que se sobrepõe à motivação passageira. O meu coaching foca-se no desenvolvimento de uma mentalidade de elite, ensinando-te a dominar o "jogo longo" e a superar as barreiras mentais de uma preparação rigorosa. 
-                    <strong class="text-charcoal dark:text-[#627A5C]">Não construímos apenas corpos; forjamos o caráter necessário para os sustentar.</strong>
+                <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-lg md:text-xl leading-relaxed" data-i18n-pt='Para o atleta natural, cada série deve ser um movimento calculado em direção ao crescimento. A minha filosofia de treino está enraizada numa metodologia baseada em evidência científica, focando-se em biomecânica avançada, periodização estratégica e sobrecarga progressiva. Ultrapassamos o "levantar pesado" de forma aleatória para priorizar a qualidade do movimento e a integridade estrutural. <strong class="text-charcoal dark:text-[#627A5C]">Cada treino é desenhado à medida para maximizar o teu potencial genético, garantindo que o teu esforço no ginásio se traduz em tecido muscular tangível e de alta qualidade.</strong>' data-i18n-en='For the natural athlete, every set must be a calculated move toward growth. My training philosophy is rooted in evidence-based methodology, focusing on advanced biomechanics, strategic periodization, and progressive overload. We move beyond "lifting heavy" to prioritize movement quality and structural integrity. <strong class="text-charcoal dark:text-[#627A5C]">Every workout is custom-tailored to maximize your genetic potential, ensuring that your effort in the gym translates into tangible, high-quality muscle tissue.</strong>'>
+                    Para o atleta natural, cada série deve ser um movimento calculado em direção ao crescimento. A minha filosofia de treino está enraizada numa metodologia baseada em evidência científica, focando-se em biomecânica avançada, periodização estratégica e sobrecarga progressiva. Ultrapassamos o "levantar pesado" de forma aleatória para priorizar a qualidade do movimento e a integridade estrutural. 
+                    <strong class="text-charcoal dark:text-[#627A5C]">Cada treino é desenhado à medida para maximizar o teu potencial genético, garantindo que o teu esforço no ginásio se traduz em tecido muscular tangível e de alta qualidade.</strong>
                 </p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
-            <!-- COLUNA ESQUERDA: ACORDEÃO -->
             <div>
-                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6" data-i18n-pt="Pilares da Mentalidade" data-i18n-en="Mindset Pillars">Pilares da Mentalidade</h3>
+                <h3 class="text-xs font-euro-extd text-battleship uppercase tracking-widest mb-6" data-i18n-pt="Módulos de Execução" data-i18n-en="Execution Modules">Módulos de Execução</h3>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Disciplina vs. Motivação" data-i18n-en="Discipline vs. Motivation">Disciplina vs. Motivação</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Biomecânica e Execução" data-i18n-en="Biomechanics & Execution">Biomecânica e Execução</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A motivação desaparece nos dias difíceis. A disciplina é um sistema inquebrável. Construímos rotinas que executam o plano independentemente do humor." data-i18n-en="Motivation fades on difficult days. Discipline is an unbreakable system. We build routines that execute the plan regardless of mood.">A motivação desaparece nos dias difíceis. A disciplina é um sistema inquebrável. Construímos rotinas que executam o plano independentemente do humor.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A prioridade máxima. Analisamos alavancas e perfis de resistência. Um exercício só é eficaz se for executado no ângulo exato." data-i18n-en="Maximum priority. We analyze levers and resistance profiles. An exercise is only effective if executed at the exact angle.">A prioridade máxima. Analisamos alavancas e perfis de resistência. Um exercício só é eficaz se for executado no ângulo exato.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Foco no Processo" data-i18n-en="Focus on the Process">Foco no Processo</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Gestão de Intensidade (RIR)" data-i18n-en="Intensity Management (RIR)">Gestão de Intensidade (RIR)</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Não foques apenas no espelho. Ensinamos a extrair gratificação da rotina, tornando a execução a tua maior vitória diária." data-i18n-en="Don't just focus on the mirror. We teach you to extract gratification from the routine, making execution your greatest daily victory.">Não foques apenas no espelho. Ensinamos a extrair gratificação da rotina, tornando a execução a tua maior vitória diária.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A proximidade à falha (Repetições na Reserva) gerida de forma matemática para crescer sem fritar o Sistema Nervoso Central." data-i18n-en="Proximity to failure (Reps in Reserve) managed mathematically to grow without frying the Central Nervous System.">A proximidade à falha (Repetições na Reserva) gerida de forma matemática para crescer sem fritar o Sistema Nervoso Central.</p>
                     </div>
                 </div>
                 
                 <div class="accordion-item py-4">
                     <div class="accordion-header flex justify-between items-center" onclick="toggleAccordion(this)">
-                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Gestão de Fadiga Mental" data-i18n-en="Mental Fatigue Management">Gestão de Fadiga Mental</h4>
+                        <h4 class="font-euro-extd text-lg uppercase text-graphite transition-colors duration-400" data-i18n-pt="Sobrecarga Progressiva" data-i18n-en="Progressive Overload">Sobrecarga Progressiva</h4>
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="Fornecemos ferramentas de resiliência e foco para lidar com quebras de energia sem perder o rumo estratégico durante uma preparação." data-i18n-en="We provide resilience and focus tools to deal with energy drops without losing strategic direction during a contest prep.">Fornecemos ferramentas de resiliência e foco para lidar com quebras de energia sem perder o rumo estratégico durante uma preparação.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana." data-i18n-en="The undeniable metric. Systematic planning to force you to beat your records week after week.">A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana.</p>
                     </div>
                 </div>
                 
@@ -168,7 +172,6 @@
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA: CARROSSEL DE VÍDEOS -->
             <div class="h-full flex items-start w-full overflow-hidden">
                 <div class="w-full relative">
                     
@@ -178,48 +181,41 @@
                         </p>
                     </div>
 
-                    <!-- CONTAINER DO CARROSSEL HORIZONTAL -->
-                    <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6">
+                    <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6 cursor-grab active:cursor-grabbing">
                         
-                        <!-- VÍDEO 01 -->
                         <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
-                            <video src="videos.index/VIDEO-2026-07-21-21-28-50 2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            <video src="service/videos.index/treino1.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
-                            <!-- Indicador de Som -->
                             <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
-                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 01" data-i18n-en="Episode 01">Episódio 01</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Disciplina" data-i18n-en="Discipline">Disciplina</p>
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Execução Pura" data-i18n-en="Pure Execution">Execução Pura</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Biomecânica" data-i18n-en="Biomechanics">Biomecânica</p>
                             </div>
                         </div>
 
-                        <!-- VÍDEO 02 -->
                         <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
-                            <video src="videos.index/VIDEO-2026-07-21-21-28-50.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            <video src="service/videos.index/treino2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
-                            <!-- Indicador de Som -->
                             <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
-                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 02" data-i18n-en="Episode 02">Episódio 02</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Foco no Processo" data-i18n-en="Focus on the Process">Foco no Processo</p>
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Proximidade à Falha" data-i18n-en="Proximity to Failure">Proximidade à Falha</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Intensidade (RIR)" data-i18n-en="Intensity (RIR)">Intensidade (RIR)</p>
                             </div>
                         </div>
 
-                        <!-- VÍDEO 03 -->
                         <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
-                            <video src="videos.index/VIDEO-2026-07-21-21-30-20.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                            <video src="service/videos.index/treino3.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
-                            <!-- Indicador de Som -->
                             <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
-                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Episódio 03" data-i18n-en="Episode 03">Episódio 03</h4>
-                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="O Jogo Longo" data-i18n-en="The Long Game">O Jogo Longo</p>
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Batendo Marcas" data-i18n-en="Beating Records">Batendo Marcas</h4>
+                                <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Overload" data-i18n-en="Overload">Overload</p>
                             </div>
                         </div>
 
@@ -228,18 +224,79 @@
             </div>
 
         </div>
+
+        <section id="experience" class="mt-40 relative pt-20 pb-10 overflow-hidden">
+            <div class="absolute inset-0 flex flex-col justify-center pointer-events-none opacity-10 select-none z-0">
+                
+                <div class="animate-marquee-ltr flex whitespace-nowrap text-[10vw] font-euro-extd italic uppercase leading-none tracking-tighter">
+                    <div class="flex gap-16 shrink-0 pr-16">
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                    </div>
+                    <div class="flex gap-16 shrink-0 pr-16" aria-hidden="true">
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                        <span class="text-charcoal">SEQUEIRA</span>
+                        <span class="text-battleship">SEQUEIRA</span>
+                    </div>
+                </div>
+
+                <div class="animate-marquee-rtl flex whitespace-nowrap text-[3vw] font-euro-extd uppercase tracking-[0.2em] mt-4 border-t border-b border-graphite/20 dark:border-white/10 py-4 bg-white transition-colors duration-400">
+                    <div class="flex gap-20 shrink-0 pr-20 items-center">
+                        <span class="text-battleship" data-i18n-pt="O ESFORÇO É O MELHOR TALENTO" data-i18n-en="EFFORT IS THE BEST TALENT">O ESFORÇO É O MELHOR TALENTO</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                        <span class="text-charcoal" data-i18n-pt="TECIDO DE ALTA QUALIDADE" data-i18n-en="HIGH-QUALITY TISSUE">TECIDO DE ALTA QUALIDADE</span>
+                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
+                        <span class="text-battleship" data-i18n-pt="PERFORMANCE EMPÍRICA" data-i18n-en="EMPIRICAL PERFORMANCE">PERFORMANCE EMPÍRICA</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                    </div>
+                    <div class="flex gap-20 shrink-0 pr-20 items-center" aria-hidden="true">
+                        <span class="text-battleship" data-i18n-pt="O ESFORÇO É O MELHOR TALENTO" data-i18n-en="EFFORT IS THE BEST TALENT">O ESFORÇO É O MELHOR TALENTO</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                        <span class="text-charcoal" data-i18n-pt="TECIDO DE ALTA QUALIDADE" data-i18n-en="HIGH-QUALITY TISSUE">TECIDO DE ALTA QUALIDADE</span>
+                        <span class="w-3 h-3 bg-battleship transform rotate-45"></span>
+                        <span class="text-battleship" data-i18n-pt="PERFORMANCE EMPÍRICA" data-i18n-en="EMPIRICAL PERFORMANCE">PERFORMANCE EMPÍRICA</span>
+                        <span class="w-3 h-3 bg-charcoal transform rotate-45"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start mt-10">
+                <div class="lg:col-span-1">
+                    <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="COMPETÊNCIA & HISTÓRICO" data-i18n-en="COMPETENCE & TRACK RECORD">COMPETÊNCIA & HISTÓRICO</p>
+                    <h2 class="text-4xl md:text-5xl font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-6" data-i18n-pt="A <span class='text-charcoal'>Experiência</span>" data-i18n-en="The <span class='text-charcoal'>Experience</span>">A <span class="text-charcoal">Experiência</span></h2>
+                    <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-base leading-relaxed" data-i18n-pt="Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular." data-i18n-en="Years on the ground refining the physiological response of natural athletes. We transform raw effort into exact metrics and real muscle tissue evolution.">
+                        Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border border-graphite/10 dark:border-white/10 p-8 bg-white/70 backdrop-blur-md transition-all duration-400 hover:border-charcoal dark:hover:border-charcoal group">
+                        <span class="font-euro-extd text-4xl text-charcoal block mb-2 transition-transform group-hover:translate-x-1">100+</span>
+                        <h4 class="font-euro-extd text-sm uppercase text-graphite transition-colors duration-400 mb-2" data-i18n-pt="Físicos Reconstruídos" data-i18n-en="Rebuilt Physiques">Físicos Reconstruídos</h4>
+                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia." data-i18n-en="Surgical planning specifically designed to bypass genetic limitations and maximize hypertrophy.">Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia.</p>
+                    </div>
+                    
+                    <div class="border border-graphite/10 dark:border-white/10 p-8 bg-white/70 backdrop-blur-md transition-all duration-400 hover:border-charcoal dark:hover:border-charcoal group">
+                        <span class="font-euro-extd text-4xl text-battleship block mb-2 transition-transform group-hover:translate-x-1">100%</span>
+                        <h4 class="font-euro-extd text-sm uppercase text-graphite transition-colors duration-400 mb-2" data-i18n-pt="Metodologia Científica" data-i18n-en="Scientific Methodology">Metodologia Científica</h4>
+                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Corte total de mitos do ginásio. Aplicação prática de biomecânica avançada e dados empíricos estruturados." data-i18n-en="Total cut of gym myths. Practical application of advanced biomechanics and structured empirical data.">Corte total de mitos do ginásio. Aplicação prática de biomecânica avançada e dados empíricos estruturados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-white border-t border-graphite/10 transition-colors duration-400 py-10 relative z-20">
         <div class="max-w-[1800px] mx-auto px-6 text-center">
             <p class="font-euro text-[10px] uppercase tracking-[0.6em] text-graphite dark:text-pure-white transition-colors duration-400 font-black" data-i18n-pt="© 2024 Coach Sequeira - O esforço é o melhor talento." data-i18n-en="© 2024 Coach Sequeira - Effort is the best talent.">© 2024 Coach Sequeira - O esforço é o melhor talento.</p>
         </div>
     </footer>
 
-    <!-- SCRIPTS MÁGICOS -->
     <script>
-        // 1. SISTEMA DE DARK/LIGHT MODE
+        // 1. SISTEMA DE DARK/LIGHT MODE (TEMA)
         function toggleTheme() {
             const html = document.documentElement;
             const themeIcon = document.getElementById('theme-icon');
@@ -257,26 +314,34 @@
             }
         }
 
+        // Verifica o tema na memória ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             const themeIcon = document.getElementById('theme-icon');
+            
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
-                if(themeIcon) { themeIcon.classList.remove('fa-moon'); themeIcon.classList.add('fa-sun'); }
+                if(themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
             }
         });
 
-        // 2. SISTEMA DE TRADUÇÃO
+        // 2. SISTEMA DE TRADUÇÃO DINÂMICA
         let currentLang = 'pt';
         function toggleLanguage() {
             currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            document.documentElement.lang = currentLang;
+            document.documentElement.lang = currentLang; // Ajuda no SEO
             document.getElementById('lang-btn').innerText = currentLang === 'pt' ? 'EN' : 'PT';
 
             const elementsToTranslate = document.querySelectorAll('[data-i18n-pt]');
             elementsToTranslate.forEach(el => {
-                if (currentLang === 'pt') { el.innerHTML = el.getAttribute('data-i18n-pt'); } 
-                else { el.innerHTML = el.getAttribute('data-i18n-en'); }
+                if (currentLang === 'pt') {
+                    el.innerHTML = el.getAttribute('data-i18n-pt');
+                } else {
+                    el.innerHTML = el.getAttribute('data-i18n-en');
+                }
             });
         }
 
@@ -284,6 +349,7 @@
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
             const parent = element.parentElement;
+            
             if (content.style.maxHeight) { 
                 content.style.maxHeight = null; 
                 parent.classList.remove('accordion-active'); 

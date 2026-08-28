@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life as an Athlete - Season Off</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos globais -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-6 mix-blend-difference">
+        <a href="index.html" class="inline-flex items-center gap-3 text-white font-euro-extd uppercase tracking-[0.2em] text-xs hover:text-gray-400 transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> VOLTAR À PÁGINA INICIAL
+        </a>
+    </nav>
+
+    <!-- Título Fixo -->
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center pointer-events-none">
+        <h1 class="text-5xl md:text-[9rem] font-euro-extd italic text-white/10 uppercase tracking-tighter">SEASON OFF</h1>
+    </div>
+
+    <!-- Secção Parallax Horizontal -->
+    <section id="parallax-gallery" class="relative w-full h-[1200vh] z-10">
+        
+        <!-- Fundo Fixo e Grelha -->
+        <div class="sticky top-0 w-full h-screen overflow-hidden bg-black">
+            <img src="img.sequeira/champ_05.jpg" class="w-full h-full object-cover opacity-20 blur-[2px]">
+            <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 60px 60px;"></div>
+        </div>
+
+        <div class="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
+            
+            <!-- TEXTOS DE SEASON OFF -->
+            <div class="parallax-element absolute w-[90%] md:w-[35rem] z-30" style="top: 20%; left: 80%;" data-speed="1.2">
+                <h2 class="font-euro-extd text-4xl md:text-5xl uppercase tracking-tighter text-white mb-4">DESCANSO ATIVO</h2>
+                <div class="font-euro text-sm md:text-base text-gray-400 leading-relaxed">
+                    <p>O corpo exige tréguas, mas o motor nunca desliga totalmente. A recuperação ativa é o momento de oxigenar os tecidos e preparar as fundações para o próximo ciclo.</p>
+                </div>
+            </div>
+
+            <div class="parallax-element absolute w-[90%] md:w-[35rem] z-30" style="top: 60%; left: 160%;" data-speed="1.5">
+                <h2 class="font-euro-extd text-4xl md:text-5xl uppercase tracking-tighter text-white mb-4">REESTRUTURAÇÃO</h2>
+                <div class="font-euro text-sm md:text-base text-gray-400 leading-relaxed">
+                    <p>Tempo para curar lesões invisíveis, equilibrar assimetrias e adaptar novas estratégias metabólicas. É no off-season que o novo formato do atleta ganha vida.</p>
+                </div>
+            </div>
+
+            <div class="parallax-element absolute w-[90%] md:w-[35rem] z-30" style="top: 25%; left: 260%;" data-speed="1.3">
+                <h2 class="font-euro-extd text-4xl md:text-5xl uppercase tracking-tighter text-white mb-4">BASE MUSCULAR</h2>
+                <div class="font-euro text-sm md:text-base text-gray-400 leading-relaxed">
+                    <p>Sem a restrição da prova, o foco altera-se para o aumento de massa bruta e força extrema. O superavit calórico e os treinos de alta carga ditam agora as regras.</p>
+                </div>
+            </div>
+
+            <div class="parallax-element absolute w-[90%] md:w-[35rem] z-30" style="top: 70%; left: 360%;" data-speed="1.6">
+                <h2 class="font-euro-extd text-4xl md:text-5xl uppercase tracking-tighter text-white mb-4">RENOVAÇÃO MENTAL</h2>
+                <div class="font-euro text-sm md:text-base text-gray-400 leading-relaxed">
+                    <p>Descomprimir o sistema nervoso central é tão vital quanto descansar os músculos. Recarregar as energias, o foco e a fome insaciável de vencer na época que se aproxima.</p>
+                </div>
+            </div>
+
+            <!-- FOTOS HORIZONTAIS COM ZOOM (Atenção às pastas das tuas fotos reais) -->
+            <img src="fotos-seasonoff/foto-1.jpg" class="parallax-element absolute w-64 md:w-80 shadow-2xl rounded-sm pointer-events-auto hover:border hover:border-white/20 transition-colors z-40" style="top: 10%; left: 20%;" data-speed="1.1">
+            <img src="fotos-seasonoff/foto-2.jpg" class="parallax-element absolute w-48 md:w-[25rem] shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 50%; left: 50%;" data-speed="1.4" data-zoom="1.6">
+            <img src="fotos-seasonoff/foto-3.jpg" class="parallax-element absolute w-72 md:w-96 shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 15%; left: 110%;" data-speed="1.2">
+            <img src="fotos-seasonoff/foto-4.jpg" class="parallax-element absolute w-56 md:w-80 shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 75%; left: 130%;" data-speed="1.6">
+            <img src="fotos-seasonoff/foto-5.jpg" class="parallax-element absolute w-64 md:w-[24rem] shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 10%; left: 180%;" data-speed="1.3" data-zoom="1.5">
+            <img src="fotos-seasonoff/foto-6.jpg" class="parallax-element absolute w-56 md:w-72 shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 55%; left: 210%;" data-speed="1.1">
+            <img src="fotos-seasonoff/foto-7.jpg" class="parallax-element absolute w-72 md:w-80 shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 20%; left: 240%;" data-speed="1.7">
+            <img src="fotos-seasonoff/foto-8.jpg" class="parallax-element absolute w-48 md:w-96 shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 80%; left: 280%;" data-speed="1.2" data-zoom="1.4">
+            <img src="fotos-seasonoff/foto-9.jpg" class="parallax-element absolute w-64 md:w-72 shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 40%; left: 310%;" data-speed="1.5">
+            <img src="fotos-seasonoff/foto-10.jpg" class="parallax-element absolute w-80 md:w-[26rem] shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 15%; left: 340%;" data-speed="1.1">
+            <img src="fotos-seasonoff/foto-11.jpg" class="parallax-element absolute w-60 md:w-80 shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 60%; left: 370%;" data-speed="1.8" data-zoom="1.7">
+            <img src="fotos-seasonoff/foto-12.jpg" class="parallax-element absolute w-56 md:w-64 shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 85%; left: 400%;" data-speed="1.3">
+            <img src="fotos-seasonoff/foto-13.jpg" class="parallax-element absolute w-72 md:w-96 shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 10%; left: 430%;" data-speed="1.5">
+            <img src="fotos-seasonoff/foto-14.jpg" class="parallax-element absolute w-64 md:w-80 shadow-2xl rounded-sm pointer-events-auto z-20" style="top: 50%; left: 460%;" data-speed="1.2">
+            <img src="fotos-seasonoff/foto-15.jpg" class="parallax-element absolute w-56 md:w-[22rem] shadow-2xl rounded-sm pointer-events-auto z-40" style="top: 25%; left: 490%;" data-speed="1.6" data-zoom="1.5">
+        </div>
+    </section>
+
+    <!-- Bibliotecas GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const parallaxGallery = document.querySelector('#parallax-gallery');
+        const parallaxElements = gsap.utils.toArray('.parallax-element');
+
+        if (parallaxGallery && parallaxElements.length > 0) {
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-speed')) || 1;
+                const zoomFactor = parseFloat(el.getAttribute('data-zoom')) || 1;
+                
+                gsap.to(el, {
+                    x: () => -window.innerWidth * 7 * speed, 
+                    scale: zoomFactor,
+                    ease: "none",
+                    force3D: true, 
+                    scrollTrigger: {
+                        trigger: "#parallax-gallery",
+                        start: "top top", 
+                        end: "bottom top",   
+                        scrub: 3 
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
