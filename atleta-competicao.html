@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life as an Athlete — Competição | Coach Sequeira</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pure-white': '#ffffff',
+                        'off-white': '#f4f4f4',
+                        'aluminium': '#8c8c8c',
+                        'battleship': '#848482',
+                        'charcoal': '#3B4A37',
+                        'graphite': '#262626',
+                    },
+                    fontFamily: {
+                        'euro': ['Eurostile', 'sans-serif'],
+                        'euro-extd': ['Eurostile Extd', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos Globais -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        body {
+            background-color: #090b08;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Grelha técnica subtil de fundo */
+        .tech-grid-bg {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(59, 74, 55, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 74, 55, 0.07) 1px, transparent 1px);
+        }
+
+        /* Elemento que sofre Skew com a velocidade do Scroll (GSAP) */
+        .skew-elem {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        /* Moldura vazia vs Moldura com foto */
+        .photo-frame {
+            position: relative;
+            background: linear-gradient(145deg, #131712 0%, #0b0d0a 100%);
+            border: 1px solid rgba(59, 74, 55, 0.35);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .photo-frame:hover {
+            border-color: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(59, 74, 55, 0.35);
+        }
+
+        /* Esconde a imagem enquanto o src="" estiver vazio */
+        .frame-img[src=""],
+        .frame-img:not([src]) {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .frame-img:not([src=""]) {
+            opacity: 1;
+            z-index: 20;
+        }
+        /* Quando a foto é colocada no src, esconde o placeholder da moldura */
+        .frame-img:not([src=""]) ~ .frame-placeholder {
+            opacity: 0;
+        }
+
+        /* Cantoneiras técnicas da moldura */
+        .corner-mark {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: rgba(59, 74, 55, 0.7);
+            pointer-events: none;
+            z-index: 25;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .photo-frame:hover .corner-mark {
+            border-color: #ffffff;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body class="tech-grid-bg antialiased selection:bg-charcoal selection:text-white">
+
+    <!-- NAVBAR FIXA -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex items-center justify-between bg-black/70 backdrop-blur-md border-b border-white/10">
+        <a href="index.html#athlete-life" class="inline-flex items-center gap-3 text-white font-euro-extd uppercase tracking-[0.2em] text-xs hover:text-charcoal transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> VOLTAR AO INÍCIO
+        </a>
+
+        <div class="hidden md:flex items-center gap-6 font-euro text-[11px] uppercase tracking-[0.25em] text-aluminium">
+            <span>ARCHIVE // <strong class="text-white">COMPETIÇÃO</strong></span>
+            <span class="text-white/20">|</span>
+            <span>21 FRAMES</span>
+            <span class="text-white/20">|</span>
+            <span class="inline-flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-charcoal animate-pulse"></span>
+                SKEW VELOCITY: <strong id="velocity-readout" class="text-white font-mono">0.0°</strong>
+            </span>
+        </div>
+
+        <a href="atleta-treino.html" class="inline-flex items-center gap-2 text-aluminium hover:text-white font-euro-extd uppercase tracking-[0.15em] text-[10px] transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> VER TREINO
+        </a>
+    </nav>
+
+    <!-- MARCA DE ÁGUA FIXA AO FUNDO -->
+    <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        <h1 class="text-[15vw] font-euro-extd italic uppercase text-white/[0.025] tracking-tighter select-none leading-none">
+            SHOW DAY
+        </h1>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="relative z-10 pt-32 pb-28 px-6 md:px-12 lg:px-20 max-w-[1650px] mx-auto">
+
+        <!-- HERO HEADER DA GALERIA -->
+        <header class="mb-20 md:mb-28 border-b border-white/10 pb-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div>
+                    <span class="font-euro text-charcoal text-xs md:text-sm uppercase tracking-[0.35em] font-bold block mb-3">
+                        02 // LIFE AS AN ATHLETE — STAGE ARCHIVE
+                    </span>
+                    <h2 class="text-5xl md:text-8xl font-euro-extd italic uppercase tracking-tighter leading-none text-white">
+                        DEBAIXO <span class="text-charcoal">DAS LUZES</span>
+                    </h2>
+                </div>
+                <p class="font-euro text-aluminium text-xs md:text-sm uppercase tracking-[0.18em] max-w-md leading-relaxed">
+                    Show day: meses de rigor silencioso materializados em minutos no palco. O trabalho está feito; agora é apresentar o pacote completo. Faz scroll para explorar as 21 molduras.
+                </p>
+            </div>
+        </header>
+
+        <!-- ========================================================================= -->
+        <!-- GALERIA INTERATIVA GSAP (SKEW ON SCROLL VELOCITY) — 21 MOLDURAS + TEXTOS  -->
+        <!-- Como adicionar fotos: basta colocar o caminho no atributo src="" de cada <img> -->
+        <!-- ========================================================================= -->
+        <section id="skew-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16 md:gap-y-24 items-start">
+
+            <!-- MOLDURA 01 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 01 AQUI -->
+                    <img src="assets/img/competicao/DSCF3983-2.jpg" alt="Competição 01" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">01</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 01 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">01. Peak Week Check-in</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Os últimos ajustes de água, sódio e glicogénio antes de pisar o palco.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[PEAK WEEK]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 02 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 02 AQUI -->
+                    <img src="assets/img/competicao/DSCF3990-3.jpg" alt="Competição 02" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">02</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 02 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">02. Carb-Up Cirúrgico</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Preencher o tecido muscular ao grama sem perder uma única estria.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[FULLNESS]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 03 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 03 AQUI -->
+                    <img src="assets/img/competicao/DSCF3993-4.jpg" alt="Competição 03" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">03</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 03 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">03. Registo Oficial</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Pesagem e inscrição concluídas: o momento em que a competição começa oficialmente.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[CHECK-IN]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 04 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 04 AQUI -->
+                    <img src="assets/img/competicao/DSCF4135-27.jpg" alt="Competição 04" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">04</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 04 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">04. Bastidores & Tan</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Camada após camada de cor para destacar cada corte debaixo dos holofotes.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[BACKSTAGE]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 05 -->
+            <article class="skew-elem group cursor-pointer md:mt-14" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 05 AQUI -->
+                    <img src="assets/img/competicao/DSCF4095-21.jpg" alt="Competição 05" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">05</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 05 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">05. Sangue-Frio no Pump</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Bandas e pesos leves nos bastidores: ativar a vascularização sem gerar fadiga.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[PUMP UP]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 06 -->
+            <article class="skew-elem group cursor-pointer lg:mt-28" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 06 AQUI -->
+                    <img src="assets/img/competicao/DSCF4269-3.jpg" alt="Competição 06" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">06</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 06 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">06. Entrada em Palco</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">O primeiro passo debaixo das luzes. Postura, presença e confiança total.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[STAGE WALK]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 07 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 07 AQUI -->
+                    <img src="assets/img/competicao/DSCF4305-15.jpg" alt="Competição 07" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">07</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 07 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">07. Quarter Turns</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Simetria e proporções avaliadas de todos os ângulos pelos juízes.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[SYMMETRY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 08 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 08 AQUI -->
+                    <img src="assets/img/competicao/DSCF4321-18.jpg" alt="Competição 08" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">08</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 08 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">08. Front Double Biceps</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Cintura fina, v-taper aberto e cortes profundos nos quadríceps.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[MANDATORY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 09 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 09 AQUI -->
+                    <img src="assets/img/competicao/DSCF4400-32.jpg" alt="Competição 09" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">09</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 09 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">09. Front Lat Spread</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Expansão dorsal máxima a dominar o espaço no centro do lineup.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[WIDTH]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 10 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 10 AQUI -->
+                    <img src="assets/img/competicao/DSCF4406-33.jpg" alt="Competição 10" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">10</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 10 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">10. Side Chest</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Espessura de peitoral, ombro estriado e separação femural de perfil.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[SIDE POSE]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 11 -->
+            <article class="skew-elem group cursor-pointer md:mt-14" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 11 AQUI -->
+                    <img src="assets/img/competicao/DSCF4555-13.jpg" alt="Competição 11" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">11</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 11 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">11. First Callout</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">No centro das comparações diretas onde se decidem os títulos.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[CALLOUT #1]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 12 -->
+            <article class="skew-elem group cursor-pointer lg:mt-28" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 12 AQUI -->
+                    <img src="assets/img/competicao/DSCF4556-14.jpg" alt="Competição 12" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">12</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 12 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">12. Rear Double Biceps</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Os campeonatos ganham-se de costas: densidade lombar, glúteos estriados e femurais.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[BACK SHOT]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 13 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 13 AQUI -->
+                    <img src="assets/img/competicao/DSCF4610-26.jpg" alt="Competição 13" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">13</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 13 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">13. Rear Lat Spread</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Largura escapular e detalhe anatómico sob a luz direta do palco.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[CONDITIONING]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 14 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 14 AQUI -->
+                    <img src="assets/img/competicao/DSCF4896-13.jpg" alt="Competição 14" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">14</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 14 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">14. Side Triceps</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Controlo abdominal, linha de cintura compacta e separação no braço.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[AESTHETICS]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 15 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 15 AQUI -->
+                    <img src="assets/img/competicao/DSCF4938-16.jpg" alt="Competição 15" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">15</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 15 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">15. Abdominals & Thighs</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Pele fina como papel e controlo respiratório após minutos de esforço isométrico.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[SHREDDED]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 16 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 16 AQUI -->
+                    <img src="assets/img/competicao/DSCF4950-17.jpg" alt="Competição 16" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">16</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 16 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">16. Most Muscular</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">A pose que resume a intensidade, maturidade e densidade do culturismo natural.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[MOST MUSCULAR]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 17 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 17 AQUI -->
+                    <img src="assets/img/competicao/DSCF4972-25.jpg" alt="Competição 17" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">17</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 17 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">17. Rotina Livre</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Arte e apresentação: transições fluidas ao ritmo da música escolhida.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[ROUTINE]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 18 -->
+            <article class="skew-elem group cursor-pointer lg:mt-28" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 18 AQUI -->
+                    <img src="assets/img/competicao/DSCF5045-36.jpg" alt="Competição 18" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">18</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 18 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">18. Posedown</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">A batalha final lado a lado com os melhores atletas da categoria.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[POSEDOWN]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 19 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 19 AQUI -->
+                    <img src="assets/img/competicao/DSCF5098-44.jpg" alt="Competição 19" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">19</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 19 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">19. Finais da Noite</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Físico ainda mais seco e denso para o confronto decisivo das finais.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[NIGHT SHOW]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 20 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 20 AQUI -->
+                    <img src="assets/img/competicao/DSCF5111-45.jpg" alt="Competição 20" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">20</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 20 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">20. Disputa do Overall</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Campeão contra campeão: quando apenas um sai com o título absoluto.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[OVERALL]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 21 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 21 AQUI -->
+                    <img src="assets/img/competicao/DSCF5239-72.jpg" alt="Competição 21" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">21</span>
+                        <i class="fa-solid fa-plus text-charcoal text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 21 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">21. O Legado no Palco</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">O troféu é apenas a consequência visível de anos de disciplina invisível. E a próxima época começa amanhã.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[CHAMPION]</span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- FOOTER DE NAVEGAÇÃO ENTRE CARDS -->
+        <footer class="mt-32 pt-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <a href="index.html#athlete-life" class="font-euro text-xs uppercase tracking-[0.25em] text-aluminium hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar a Life as an Athlete
+            </a>
+            <a href="atleta-treino.html" class="inline-flex items-center gap-4 bg-[#1a1a1a] hover:bg-[#2d2d2d] border border-white/15 text-white font-euro-extd italic uppercase text-sm tracking-wider px-8 py-4 rounded-sm transition-all">
+                <i class="fa-solid fa-arrow-left"></i> EXPLORAR GALERIA: TREINO
+            </a>
+        </footer>
+
+    </main>
+
+    <!-- LIGHTBOX MODAL INTERATIVO -->
+    <div id="frame-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden items-center justify-center p-6" onclick="closeFrameModal()">
+        <button class="absolute top-8 right-8 text-white/60 hover:text-white text-2xl transition-colors" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-3xl w-full bg-[#111510] border border-charcoal/50 rounded-sm p-6 md:p-8" onclick="event.stopPropagation()">
+            <div class="relative aspect-[4/3] w-full bg-[#090b08] border border-white/10 mb-6 flex items-center justify-center overflow-hidden">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-contain hidden">
+                <div id="modal-placeholder" class="text-center p-6">
+                    <i class="fa-regular fa-image text-3xl text-charcoal mb-3 block"></i>
+                    <span class="font-euro text-xs uppercase tracking-[0.25em] text-white/40 block">MOLDURA PRONTA PARA FOTO</span>
+                    <span class="font-mono text-[11px] text-white/25 mt-1 block">Adiciona o caminho no atributo src="" deste card</span>
+                </div>
+            </div>
+            <h4 id="modal-title" class="font-euro-extd text-2xl text-white italic uppercase tracking-tight mb-2"></h4>
+            <p id="modal-desc" class="font-euro text-aluminium text-sm uppercase tracking-wider leading-relaxed"></p>
+        </div>
+    </div>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ============================================================================
+        // GSAP SKEW ON SCROLL USING SCROLL VELOCITY — SCROLLTRIGGER
+        // ============================================================================
+        let proxy = { skew: 0 },
+            skewSetter = gsap.quickSetter(".skew-elem", "skewY", "deg"),
+            clamp = gsap.utils.clamp(-20, 20),
+            velocityReadout = document.getElementById("velocity-readout");
+
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                let skew = clamp(self.getVelocity() / -300);
+                if (Math.abs(skew) > Math.abs(proxy.skew)) {
+                    proxy.skew = skew;
+                    gsap.to(proxy, {
+                        skew: 0,
+                        duration: 0.8,
+                        ease: "power3",
+                        overwrite: true,
+                        onUpdate: () => {
+                            skewSetter(proxy.skew);
+                            if (velocityReadout) {
+                                velocityReadout.textContent = proxy.skew.toFixed(1) + "°";
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        gsap.set(".skew-elem", { transformOrigin: "right center", force3D: true });
+
+        // Entrada progressiva suave de cada moldura ao fazer scroll
+        gsap.utils.toArray(".skew-elem").forEach((card) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 92%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // ============================================================================
+        // MODAL / LIGHTBOX AO CLICAR NA MOLDURA
+        // ============================================================================
+        function openFrameModal(articleEl) {
+            const modal = document.getElementById("frame-modal");
+            const imgEl = articleEl.querySelector(".frame-img");
+            const titleEl = articleEl.querySelector("h3");
+            const descEl = articleEl.querySelector("p");
+
+            const modalImg = document.getElementById("modal-img");
+            const modalPlaceholder = document.getElementById("modal-placeholder");
+
+            document.getElementById("modal-title").textContent = titleEl ? titleEl.textContent : "";
+            document.getElementById("modal-desc").textContent = descEl ? descEl.textContent : "";
+
+            const src = imgEl ? imgEl.getAttribute("src") : "";
+            if (src && src.trim() !== "") {
+                modalImg.src = src;
+                modalImg.classList.remove("hidden");
+                modalPlaceholder.classList.add("hidden");
+            } else {
+                modalImg.src = "";
+                modalImg.classList.add("hidden");
+                modalPlaceholder.classList.remove("hidden");
+            }
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeFrameModal() {
+            const modal = document.getElementById("frame-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeFrameModal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Desktop/fotos sequeira 2026 ( treino) 2"
+		},
+		{
+			"path": "../Desktop/fotos Sequeira 2026 ( wnbf)1"
+		},
+		{
+			"path": "../Desktop/foto sequeira experimental "
+		},
+		{
+			"path": "../Desktop/novos videos sequeira 2026"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5502,
+		"liveServer.settings.multiRootWorkspaceName": "landing page.html"
+	}
+}

@@ -69,6 +69,21 @@
         @keyframes marqueeRTL { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         .animate-marquee-ltr { display: flex; width: max-content; animation: marqueeLTR 30s linear infinite; }
         .animate-marquee-rtl { display: flex; width: max-content; animation: marqueeRTL 25s linear infinite; }
+
+        /* Indicador de Som (Estilo TikTok/Reels) */
+        .sound-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body class="antialiased bg-white text-graphite">
@@ -156,7 +171,7 @@
                         <i class="fa-solid fa-plus icon-cross text-xl text-battleship"></i>
                     </div>
                     <div class="accordion-content">
-                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana." data-i18n-en="The undeniable metric. Systematic planning to force you to beat your records week after week.">A métrica inegável. Planificação sistemática para te obrigar a bater as tuas marcas semana após semana.</p>
+                        <p class="font-euro text-battleship text-sm pt-4 pb-2 leading-relaxed" data-i18n-pt="A métrica inegável. Planeamento sistemático para te obrigar a bater as tuas marcas semana após semana." data-i18n-en="The undeniable metric. Systematic planning to force you to beat your records week after week.">A métrica inegável. Planeamento sistemático para te obrigar a bater as tuas marcas semana após semana.</p>
                     </div>
                 </div>
                 
@@ -179,10 +194,10 @@
                     <div id="video-carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory hide-scrollbar pb-6 cursor-grab active:cursor-grabbing">
                         
                         <!-- VÍDEO 01 -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <!-- Os links dos vídeos foram preparados com ../ -->
-                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50 2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
+                            <video src="../assets/videos/treino1.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
+                            <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
@@ -192,9 +207,10 @@
                         </div>
 
                         <!-- VÍDEO 02 -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <video src="../videos.index/VIDEO-2026-07-21-21-28-50.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
+                            <video src="../assets/videos/treino2.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
+                            <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
@@ -204,13 +220,14 @@
                         </div>
 
                         <!-- VÍDEO 03 -->
-                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400">
-                            <video src="../videos.index/VIDEO-2026-07-21-21-30-20.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
+                        <div class="video-slide w-[90%] md:w-[320px] flex-shrink-0 snap-center relative aspect-[9/16] bg-[#111] rounded-lg overflow-hidden shadow-2xl group border border-graphite/10 dark:border-white/10 transition-colors duration-400 cursor-pointer">
+                            <video src="../assets/videos/treino3.mp4" class="w-full h-full object-contain opacity-80 transition-opacity duration-500" muted playsinline preload="metadata"></video>
                             
+                            <div class="sound-indicator"><i class="fa-solid fa-volume-xmark"></i></div>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
 
                             <div class="absolute bottom-6 left-6 pointer-events-none z-10">
-                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="Batendo Marcas" data-i18n-en="Beating Records">Batendo Marcas</h4>
+                                <h4 class="font-euro-extd text-pure-white uppercase italic text-xl drop-shadow-md" data-i18n-pt="A Bater Marcas" data-i18n-en="Beating Records">A Bater Marcas</h4>
                                 <p class="font-euro text-pure-white/70 text-[10px] font-bold tracking-widest mt-1 uppercase" data-i18n-pt="Overload" data-i18n-en="Overload">Overload</p>
                             </div>
                         </div>
@@ -268,8 +285,8 @@
                 <div class="lg:col-span-1">
                     <p class="font-euro text-battleship text-[10px] font-black uppercase tracking-[0.4em] mb-4" data-i18n-pt="COMPETÊNCIA & HISTÓRICO" data-i18n-en="COMPETENCE & TRACK RECORD">COMPETÊNCIA & HISTÓRICO</p>
                     <h2 class="text-4xl md:text-5xl font-euro-extd italic uppercase text-graphite transition-colors duration-400 leading-none mb-6" data-i18n-pt="A <span class='text-charcoal'>Experiência</span>" data-i18n-en="The <span class='text-charcoal'>Experience</span>">A <span class="text-charcoal">Experiência</span></h2>
-                    <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-base leading-relaxed" data-i18n-pt="Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular." data-i18n-en="Years on the ground refining the physiological response of natural athletes. We transform raw effort into exact metrics and real muscle tissue evolution.">
-                        Anos no terreno lapidando a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular.
+                    <p class="font-euro text-graphite dark:text-[#CCCCCC] transition-colors duration-400 text-base leading-relaxed" data-i18n-pt="Anos no terreno a lapidar a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular." data-i18n-en="Years on the ground refining the physiological response of natural athletes. We transform raw effort into exact metrics and real muscle tissue evolution.">
+                        Anos no terreno a lapidar a resposta fisiológica de atletas naturais. Transformamos esforço bruto em métricas exatas e evolução real de tecido muscular.
                     </p>
                 </div>
                 
@@ -278,7 +295,7 @@
                     <div class="border border-graphite/10 dark:border-white/10 p-8 bg-white/70 backdrop-blur-md transition-all duration-400 hover:border-charcoal dark:hover:border-charcoal group">
                         <span class="font-euro-extd text-4xl text-charcoal block mb-2 transition-transform group-hover:translate-x-1">100+</span>
                         <h4 class="font-euro-extd text-sm uppercase text-graphite transition-colors duration-400 mb-2" data-i18n-pt="Físicos Reconstruídos" data-i18n-en="Rebuilt Physiques">Físicos Reconstruídos</h4>
-                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia." data-i18n-en="Surgical planning specifically designed to bypass genetic limitations and maximize hypertrophy.">Planificações cirúrgicas desenhadas especificamente para contornar limitações genéticas e maximizar a hipertrofia.</p>
+                        <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Planeamento cirúrgico desenhado especificamente para contornar limitações genéticas e maximizar a hipertrofia." data-i18n-en="Surgical planning specifically designed to bypass genetic limitations and maximize hypertrophy.">Planeamento cirúrgico desenhado especificamente para contornar limitações genéticas e maximizar a hipertrofia.</p>
                     </div>
                     
                     <!-- Cartão 2 -->
@@ -368,10 +385,30 @@
             }
         }
 
-        // 4. AUTOPLAY E SCROLL DO CARROSSEL DE VÍDEOS
+        // 4. LÓGICA DO CARROSSEL DE VÍDEOS (Autoplay + Mute/Unmute ao Clicar)
         document.addEventListener("DOMContentLoaded", () => {
             const slides = document.querySelectorAll('.video-slide');
             const videos = document.querySelectorAll('.video-slide video');
+
+            slides.forEach(slide => {
+                const video = slide.querySelector('video');
+                const indicator = slide.querySelector('.sound-indicator');
+                const icon = indicator ? indicator.querySelector('i') : null;
+
+                slide.addEventListener('click', () => {
+                    if (video.muted) {
+                        video.muted = false;
+                        if (icon) { icon.classList.remove('fa-volume-xmark'); icon.classList.add('fa-volume-high'); }
+                    } else {
+                        video.muted = true;
+                        if (icon) { icon.classList.remove('fa-volume-high'); icon.classList.add('fa-volume-xmark'); }
+                    }
+                    if (indicator) {
+                        indicator.style.opacity = '1';
+                        setTimeout(() => { indicator.style.opacity = '0'; }, 1000);
+                    }
+                });
+            });
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -385,6 +422,7 @@
                         if (video && !video.paused) {
                             video.pause();
                             video.currentTime = 0; 
+                            video.muted = true;
                         }
                     }
                 });

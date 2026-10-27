@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life as an Athlete — Treino | Coach Sequeira</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pure-white': '#ffffff',
+                        'off-white': '#f4f4f4',
+                        'aluminium': '#8c8c8c',
+                        'battleship': '#848482',
+                        'charcoal': '#3B4A37',
+                        'graphite': '#262626',
+                    },
+                    fontFamily: {
+                        'euro': ['Eurostile', 'sans-serif'],
+                        'euro-extd': ['Eurostile Extd', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos Globais -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Grelha técnica subtil de fundo */
+        .tech-grid-bg {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Elemento que sofre Skew com a velocidade do Scroll (GSAP) */
+        .skew-elem {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        /* Moldura vazia vs Moldura com foto */
+        .photo-frame {
+            position: relative;
+            background: linear-gradient(145deg, #141414 0%, #0d0d0d 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .photo-frame:hover {
+            border-color: rgba(59, 74, 55, 0.9);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(59, 74, 55, 0.2);
+        }
+
+        /* Esconde a imagem enquanto o src="" estiver vazio */
+        .frame-img[src=""],
+        .frame-img:not([src]) {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .frame-img:not([src=""]) {
+            opacity: 1;
+            z-index: 20;
+        }
+        /* Quando a foto é colocada no src, esconde o placeholder da moldura */
+        .frame-img:not([src=""]) ~ .frame-placeholder {
+            opacity: 0;
+        }
+
+        /* Cantoneiras técnicas da moldura */
+        .corner-mark {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: rgba(255, 255, 255, 0.35);
+            pointer-events: none;
+            z-index: 25;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .photo-frame:hover .corner-mark {
+            border-color: #3B4A37;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body class="tech-grid-bg antialiased selection:bg-charcoal selection:text-white">
+
+    <!-- NAVBAR FIXA -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-6 flex items-center justify-between bg-black/70 backdrop-blur-md border-b border-white/10">
+        <a href="index.html#athlete-life" class="inline-flex items-center gap-3 text-white font-euro-extd uppercase tracking-[0.2em] text-xs hover:text-charcoal transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> VOLTAR AO INÍCIO
+        </a>
+
+        <div class="hidden md:flex items-center gap-6 font-euro text-[11px] uppercase tracking-[0.25em] text-aluminium">
+            <span>ARCHIVE // <strong class="text-white">TREINO</strong></span>
+            <span class="text-white/20">|</span>
+            <span>19 FRAMES</span>
+            <span class="text-white/20">|</span>
+            <span class="inline-flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-charcoal animate-pulse"></span>
+                SKEW VELOCITY: <strong id="velocity-readout" class="text-white font-mono">0.0°</strong>
+            </span>
+        </div>
+
+        <a href="atleta-competicao.html" class="inline-flex items-center gap-2 text-aluminium hover:text-white font-euro-extd uppercase tracking-[0.15em] text-[10px] transition-colors">
+            VER COMPETIÇÃO <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </nav>
+
+    <!-- MARCA DE ÁGUA FIXA AO FUNDO -->
+    <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        <h1 class="text-[18vw] font-euro-extd italic uppercase text-white/[0.025] tracking-tighter select-none leading-none">
+            TRAINING
+        </h1>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="relative z-10 pt-32 pb-28 px-6 md:px-12 lg:px-20 max-w-[1650px] mx-auto">
+
+        <!-- HERO HEADER DA GALERIA -->
+        <header class="mb-20 md:mb-28 border-b border-white/10 pb-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div>
+                    <span class="font-euro text-charcoal text-xs md:text-sm uppercase tracking-[0.35em] font-bold block mb-3">
+                        01 // LIFE AS AN ATHLETE — ARCHIVE
+                    </span>
+                    <h2 class="text-5xl md:text-8xl font-euro-extd italic uppercase tracking-tighter leading-none text-white">
+                        O TREINO <span class="text-charcoal">NO ESCURO</span>
+                    </h2>
+                </div>
+                <p class="font-euro text-aluminium text-xs md:text-sm uppercase tracking-[0.18em] max-w-md leading-relaxed">
+                    Não levantamos peso por ego. Cada repetição respeita a biomecânica, as alavancas e a tensão mecânica. Faz scroll para sentir a velocidade e clica em qualquer moldura para expandir.
+                </p>
+            </div>
+        </header>
+
+        <!-- ========================================================================= -->
+        <!-- GALERIA INTERATIVA GSAP (SKEW ON SCROLL VELOCITY) — 19 MOLDURAS + TEXTOS  -->
+        <!-- Como adicionar fotos: basta colocar o caminho no atributo src="" de cada <img> -->
+        <!-- ========================================================================= -->
+        <section id="skew-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16 md:gap-y-24 items-start">
+
+            <!-- MOLDURA 01 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 01 AQUI -->
+                    <img src="assets/img/treino/DSCF2741-2.jpg" alt="Treino 01" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <!-- Placeholder da Moldura -->
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none transition-opacity duration-300">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">01</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 01 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">01. Execução Pura</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Controlo excêntrico e respeito absoluto pela biomecânica em cada série.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[RIR 0-1]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 02 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 02 AQUI -->
+                    <img src="assets/img/treino/DSCF2799-4.jpg" alt="Treino 02" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">02</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 02 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">02. Tensão Mecânica</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Direcionar o estímulo para o tecido-alvo sem dissipar força nas articulações.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[HEAVY DUTY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 03 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 03 AQUI -->
+                    <img src="assets/img/treino/DSCF2873-5.jpg" alt="Treino 03" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">03</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 03 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">03. Sobrecarga Progressiva</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">O logbook não mente: mais carga ou mais repetições sob o mesmo padrão.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[LOGBOOK]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 04 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[1/1] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 04 AQUI -->
+                    <img src="assets/img/treino/DSCF2911-6.jpg" alt="Treino 04" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">04</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 04 // 1:1</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">04. Estabilidade & Setup</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Sem estabilidade não há produção máxima de força. O setup dita a série.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[SETUP]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 05 -->
+            <article class="skew-elem group cursor-pointer md:mt-14" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 05 AQUI -->
+                    <img src="assets/img/treino/DSCF3491-62.jpg" alt="Treino 05" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">05</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 05 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">05. Gestão de RIR</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Saber quando ir à falha real e quando deixar uma repetição na reserva.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[INTENSITY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 06 -->
+            <article class="skew-elem group cursor-pointer lg:mt-28" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 06 AQUI -->
+                    <img src="assets/img/treino/DSCF6954-26.jpg" alt="Treino 06" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">06</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 06 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">06. Top Set do Dia</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Foco mental absoluto antes da série mais pesada da sessão.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[TOP SET]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 07 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 07 AQUI -->
+                    <img src="assets/img/treino/DSCF3694-93.jpg" alt="Treino 07" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">07</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 07 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">07. Back-Off Set</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Redução estratégica de carga para acumular volume eficaz com execução perfeita.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[BACK-OFF]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 08 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 08 AQUI -->
+                    <img src="assets/img/treino/DSCF6818-4.jpg" alt="Treino 08" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">08</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 08 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">08. Densidade Dorsal</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Remadas pesadas e controlo escapular para construir espessura de palco.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[PULL DAY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 09 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 09 AQUI -->
+                    <img src="assets/img/treino/DSCF6839-8.jpg" alt="Treino 09" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">09</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 09 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">09. Amplitude Completa</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Alongamento máximo sob carga onde a hipertrofia realmente acontece.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[FULL ROM]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 10 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 10 AQUI -->
+                    <img src="assets/img/treino/DSCF6983-29.jpg" alt="Treino 10" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">10</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 10 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">10. Sessão de Pernas</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Onde a mente quer parar na quinta repetição e o corpo faz dez.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[LOWER BODY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 11 -->
+            <article class="skew-elem group cursor-pointer md:mt-12" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 11 AQUI -->
+                    <img src="assets/img/treino/DSCF7058-38.jpg" alt="Treino 11" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">11</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 11 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">11. Perfil de Resistência</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Escolher a máquina certa para a curva de força de cada feixe muscular.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[BIOMECHANICS]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 12 -->
+            <article class="skew-elem group cursor-pointer lg:mt-24" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 12 AQUI -->
+                    <img src="assets/img/treino/DSCF7066-39.jpg" alt="Treino 12" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">12</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 12 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">12. Conexão Mente-Músculo</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Intenção máxima em cada centímetro do movimento.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[FOCUS]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 13 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 13 AQUI -->
+                    <img src="assets/img/treino/DSCF7091-44.jpg" alt="Treino 13" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">13</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 13 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">13. Pressão de Empurrar</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Estabilidade escapular e trajectória limpa para peitoral e deltóides.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[PUSH DAY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 14 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[1/1] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 14 AQUI -->
+                    <img src="assets/img/treino/DSCF7071-40.jpg" alt="Treino 14" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">14</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 14 // 1:1</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">14. Pausa no Pico</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Um segundo de contração isométrica onde o recrutamento é total.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[TEMPO 3-1-1]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 15 -->
+            <article class="skew-elem group cursor-pointer lg:mt-32" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[4/5] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 15 AQUI -->
+                    <img src="assets/img/treino/DSCF7119-52.jpg" alt="Treino 15" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">15</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 15 // 4:5</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">15. Cadeia Posterior</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Isquiotibiais e glúteos trabalhados com tensão contínua do início ao fim.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[POSTERIOR]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 16 -->
+            <article class="skew-elem group cursor-pointer" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[3/4] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 16 AQUI -->
+                    <img src="assets/img/treino/DSCF7077-27.jpg" alt="Treino 16" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">16</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 16 // 3:4</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">16. Trabalho Unilateral</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Corrigir assimetrias e garantir recrutamento idêntico em ambos os lados.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[SYMMETRY]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 17 -->
+            <article class="skew-elem group cursor-pointer md:mt-16" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 17 AQUI -->
+                    <img src="assets/img/treino/DSCF7290-9.jpg" alt="Treino 17" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">17</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 17 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">17. Descanso Cronometrado</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Recuperar o sistema nervoso central para que a próxima série seja letal.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[REST 3:00]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 18 -->
+            <article class="skew-elem group cursor-pointer lg:mt-28" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/10] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 18 AQUI -->
+                    <img src="assets/img/treino/DSCF7463-40.jpg" alt="Treino 18" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-4xl md:text-5xl text-white/10 italic mb-2">18</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-lg mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA 18 // 16:10</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-lg text-white italic uppercase tracking-tight">18. O Ambiente de Ferro</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Sem distrações. Apenas o som das placas e o trabalho a ser feito.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[IRON LAB]</span>
+                </div>
+            </article>
+
+            <!-- MOLDURA 19 -->
+            <article class="skew-elem group cursor-pointer md:col-span-2 lg:col-span-3 max-w-3xl mx-auto w-full mt-8" onclick="openFrameModal(this)">
+                <div class="photo-frame aspect-[16/9] w-full rounded-sm overflow-hidden mb-5">
+                    <span class="corner-mark top-3 left-3 border-t-2 border-l-2"></span>
+                    <span class="corner-mark top-3 right-3 border-t-2 border-r-2"></span>
+                    <span class="corner-mark bottom-3 left-3 border-b-2 border-l-2"></span>
+                    <span class="corner-mark bottom-3 right-3 border-b-2 border-r-2"></span>
+                    
+                    <!-- COLOCAR FOTO 19 AQUI -->
+                    <img src="assets/img/treino/DSCF7574-54.jpg" alt="Treino 19" class="frame-img absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    
+                    <div class="frame-placeholder absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none">
+                        <span class="font-euro-extd text-5xl md:text-6xl text-white/10 italic mb-2">19</span>
+                        <i class="fa-solid fa-plus text-charcoal/70 text-xl mb-3 group-hover:rotate-90 transition-transform duration-300"></i>
+                        <span class="font-euro text-[10px] uppercase tracking-[0.3em] text-white/30">MOLDURA FINAL 19 // 16:9 PANORÂMICA</span>
+                    </div>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 border-t border-white/10 pt-3">
+                    <div>
+                        <h3 class="font-euro-extd text-xl text-white italic uppercase tracking-tight">19. O Esforço é o Talento</h3>
+                        <p class="font-euro text-aluminium text-xs uppercase tracking-wider mt-1">Quando a sessão termina, sabes que deixaste tudo lá dentro. É assim que se constrói um campeão.</p>
+                    </div>
+                    <span class="font-mono text-[10px] text-charcoal shrink-0">[WNBF PRO]</span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- FOOTER DE NAVEGAÇÃO ENTRE CARDS -->
+        <footer class="mt-32 pt-12 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <a href="index.html#athlete-life" class="font-euro text-xs uppercase tracking-[0.25em] text-aluminium hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar a Life as an Athlete
+            </a>
+            <a href="atleta-competicao.html" class="inline-flex items-center gap-4 bg-charcoal hover:bg-[#4d6148] text-white font-euro-extd italic uppercase text-sm tracking-wider px-8 py-4 rounded-sm transition-all">
+                EXPLORAR GALERIA: COMPETIÇÃO <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </footer>
+
+    </main>
+
+    <!-- LIGHTBOX MODAL INTERATIVO -->
+    <div id="frame-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden items-center justify-center p-6" onclick="closeFrameModal()">
+        <button class="absolute top-8 right-8 text-white/60 hover:text-white text-2xl transition-colors" aria-label="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-3xl w-full bg-[#121212] border border-white/15 rounded-sm p-6 md:p-8" onclick="event.stopPropagation()">
+            <div class="relative aspect-[4/3] w-full bg-[#0a0a0a] border border-white/10 mb-6 flex items-center justify-center overflow-hidden">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-contain hidden">
+                <div id="modal-placeholder" class="text-center p-6">
+                    <i class="fa-regular fa-image text-3xl text-charcoal mb-3 block"></i>
+                    <span class="font-euro text-xs uppercase tracking-[0.25em] text-white/40 block">MOLDURA PRONTA PARA FOTO</span>
+                    <span class="font-mono text-[11px] text-white/25 mt-1 block">Adiciona o caminho no atributo src="" deste card</span>
+                </div>
+            </div>
+            <h4 id="modal-title" class="font-euro-extd text-2xl text-white italic uppercase tracking-tight mb-2"></h4>
+            <p id="modal-desc" class="font-euro text-aluminium text-sm uppercase tracking-wider leading-relaxed"></p>
+        </div>
+    </div>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ============================================================================
+        // GSAP SKEW ON SCROLL USING SCROLL VELOCITY — SCROLLTRIGGER
+        // ============================================================================
+        let proxy = { skew: 0 },
+            skewSetter = gsap.quickSetter(".skew-elem", "skewY", "deg"),
+            clamp = gsap.utils.clamp(-20, 20),
+            velocityReadout = document.getElementById("velocity-readout");
+
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                let skew = clamp(self.getVelocity() / -300);
+                if (Math.abs(skew) > Math.abs(proxy.skew)) {
+                    proxy.skew = skew;
+                    gsap.to(proxy, {
+                        skew: 0,
+                        duration: 0.8,
+                        ease: "power3",
+                        overwrite: true,
+                        onUpdate: () => {
+                            skewSetter(proxy.skew);
+                            if (velocityReadout) {
+                                velocityReadout.textContent = proxy.skew.toFixed(1) + "°";
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        gsap.set(".skew-elem", { transformOrigin: "right center", force3D: true });
+
+        // Entrada progressiva suave de cada moldura ao fazer scroll
+        gsap.utils.toArray(".skew-elem").forEach((card) => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 92%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // ============================================================================
+        // MODAL / LIGHTBOX AO CLICAR NA MOLDURA
+        // ============================================================================
+        function openFrameModal(articleEl) {
+            const modal = document.getElementById("frame-modal");
+            const imgEl = articleEl.querySelector(".frame-img");
+            const titleEl = articleEl.querySelector("h3");
+            const descEl = articleEl.querySelector("p");
+
+            const modalImg = document.getElementById("modal-img");
+            const modalPlaceholder = document.getElementById("modal-placeholder");
+
+            document.getElementById("modal-title").textContent = titleEl ? titleEl.textContent : "";
+            document.getElementById("modal-desc").textContent = descEl ? descEl.textContent : "";
+
+            const src = imgEl ? imgEl.getAttribute("src") : "";
+            if (src && src.trim() !== "") {
+                modalImg.src = src;
+                modalImg.classList.remove("hidden");
+                modalPlaceholder.classList.add("hidden");
+            } else {
+                modalImg.src = "";
+                modalImg.classList.add("hidden");
+                modalPlaceholder.classList.remove("hidden");
+            }
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeFrameModal() {
+            const modal = document.getElementById("frame-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeFrameModal();
+        });
+    </script>
+</body>
+</html>
