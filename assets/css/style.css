@@ -1,1 +1,50 @@
-@import "tailwindcss";
+/* ==========================================================================
+   SEQUEIRA — THIS IS HOW WE WORK. | Stylesheet & Responsive Media Queries
+   ========================================================================== */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#methodology {
+    position: relative;
+}
+
+/* Enquadramento da Fotografia de Destaque (Campeão / Pro Card) em #vision-reveal */
+#vision-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+#vision-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+}
+
+/* Responsividade Mobile & Tablet */
+@media (max-width: 1023px) {
+    #evolution-section .grid {
+        grid-template-columns: 1fr;
+    }
+
+    #vision-img-wrapper {
+        width: 100%;
+        max-width: 520px;
+        height: 60vh;
+    }
+}
+
+@media (max-width: 639px) {
+    #methodology {
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+    }
+
+    #vision-img-wrapper {
+        width: 100%;
+        height: 56vh;
+    }
+}

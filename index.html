@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Diogo Sequeira — Online Coach de Lifestyle e Competição de Fisiculturismo Natural | Licenciado em Ciências do Desporto (FMH) & WNBF Pro. THIS IS HOW WE WORK.">
+    <meta name="theme-color" content="#353535">
     <title>SEQUEIRA — THIS IS HOW WE WORK. | Online Coaching & Natural Bodybuilding</title>
+
+    <!-- Open Graph / WhatsApp / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SEQUEIRA — THIS IS HOW WE WORK.">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:title" content="SEQUEIRA — THIS IS HOW WE WORK. | Online Coaching &amp; Natural Bodybuilding">
+    <meta property="og:description" content="Diogo Sequeira — Online Coach de Lifestyle e Competição de Fisiculturismo Natural | Licenciado em Ciências do Desporto (FMH ULisboa) &amp; WNBF Pro.">
+    <meta property="og:image" content="assets/img/sequeira/sequeira_experience.jpg">
+    <meta property="og:image:alt" content="Diogo Sequeira — Online Coach &amp; WNBF Pro">
+    <meta property="og:url" content="https://sequeirawnbfpro.com/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SEQUEIRA — THIS IS HOW WE WORK. | Online Coaching &amp; Natural Bodybuilding">
+    <meta name="twitter:description" content="Diogo Sequeira — Online Coach de Lifestyle e Competição de Fisiculturismo Natural | Licenciado em Ciências do Desporto (FMH ULisboa) &amp; WNBF Pro.">
+    <meta name="twitter:image" content="assets/img/sequeira/sequeira_experience.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/logos/simboloverde.svg">
+    <link rel="apple-touch-icon" href="assets/img/sequeira/sequeira_experience.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
@@ -159,8 +181,8 @@
                 <div id="hero-title" class="relative w-full h-full flex flex-col items-center justify-end rounded-sm overflow-hidden border border-graphite/15 bg-graphite p-6 sm:p-8 md:p-10">
 
                     <div class="layer absolute inset-[-3%] z-0 pointer-events-none" data-speed="8">
-                        <img src="assets/img/sequeira/sequeira_experience.jpg" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-center grayscale contrast-110 opacity-90" alt="Diogo Sequeira — Sequeira Experience">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#353535]/90 via-[#353535]/20 to-transparent"></div>
+                        <img src="assets/img/sequeira/sequeira_experience.jpg" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-center" alt="Diogo Sequeira — Sequeira Experience">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     </div>
 
                     <div class="layer absolute inset-0 z-20 flex items-center justify-center pointer-events-none" data-speed="35">
@@ -202,7 +224,7 @@
             <div class="relative z-10 max-w-[1300px] mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-                    <div class="lg:col-span-5 store-reveal">
+                    <div class="lg:col-span-6 store-reveal">
                         <div class="flex items-center gap-3 mb-3">
                             <span class="w-8 h-[1px] bg-[#3B4A37]"></span>
                             <span class="font-euro text-aluminium text-[10px] font-bold uppercase tracking-[0.3em]" data-i18n-pt="SOBRE DIOGO SEQUEIRA // EMPATIA &amp; MÉTODO" data-i18n-en="ABOUT DIOGO SEQUEIRA // EMPATHY &amp; METHOD">
@@ -235,51 +257,26 @@
                         </blockquote>
                     </div>
 
-                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div class="lg:col-span-6 flex justify-center items-center">
 
-                        <article class="manifesto-video-card store-reveal group bg-[#2b2b2b] p-2.5 border border-white/10 hover:border-[#3B4A37] rounded-sm transition-all duration-500 cursor-pointer" style="transition-delay: 150ms;" onclick="toggleManifestoAudio(this)">
-                            <div class="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-graphite">
+                        <article class="manifesto-video-card store-reveal group w-full max-w-[420px] md:max-w-[460px] mx-auto bg-[#2b2b2b] p-3 border border-white/10 hover:border-[#3B4A37] rounded-sm shadow-2xl transition-all duration-500 cursor-pointer" style="transition-delay: 150ms;" onclick="toggleManifestoAudio(this)">
+                            <div class="relative aspect-[9/16] w-full overflow-hidden rounded-sm bg-graphite">
                                 <div class="absolute top-3 right-3 z-30 bg-[#353535]/85 px-2 py-1 rounded-sm border border-pure-white/10 pointer-events-none">
                                     <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official h-[15px]" alt=".S">
                                 </div>
 
-                                <video autoplay loop muted playsinline preload="metadata" class="manifesto-video w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                                    <source src="img.sequeira/video-manifesto-1.mp4" type="video/mp4">
-                                    <source src="assets/videos/treino1.mp4" type="video/mp4">
+                                <video src="assets/videos/reel-premium.mp4" autoplay loop muted playsinline preload="auto" class="manifesto-video w-full h-full object-cover">
+                                    <source src="assets/videos/reel-premium.mp4" type="video/mp4">
                                 </video>
 
-                                <button type="button" aria-label="Alternar som do vídeo 01" class="manifesto-audio-btn absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-[#353535]/85 border border-white/20 flex items-center justify-center text-pure-white hover:bg-[#3B4A37] transition-all duration-300">
+                                <button type="button" aria-label="Alternar som do vídeo Reel" class="manifesto-audio-btn absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-[#353535]/85 border border-white/20 flex items-center justify-center text-pure-white hover:bg-[#3B4A37] transition-all duration-300">
                                     <i class="manifesto-audio-icon fa-solid fa-volume-xmark text-[10px]"></i>
                                 </button>
                             </div>
 
-                            <div class="pt-2.5 pb-0.5 px-1 flex items-center justify-between gap-2">
-                                <p class="font-euro text-[10px] font-bold uppercase tracking-[0.18em] text-pure-white/90" data-i18n-pt="01 // PRÁTICA DE TREINO" data-i18n-en="01 // TRAINING PRACTICE">
-                                    01 // PRÁTICA DE TREINO
-                                </p>
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#3B4A37] shrink-0"></span>
-                            </div>
-                        </article>
-
-                        <article class="manifesto-video-card store-reveal group bg-[#2b2b2b] p-2.5 border border-white/10 hover:border-[#3B4A37] rounded-sm transition-all duration-500 cursor-pointer" style="transition-delay: 250ms;" onclick="toggleManifestoAudio(this)">
-                            <div class="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-graphite">
-                                <div class="absolute top-3 right-3 z-30 bg-[#353535]/85 px-2 py-1 rounded-sm border border-pure-white/10 pointer-events-none">
-                                    <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official h-[15px]" alt=".S">
-                                </div>
-
-                                <video autoplay loop muted playsinline preload="metadata" class="manifesto-video w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                                    <source src="img.sequeira/video-manifesto-2.mp4" type="video/mp4">
-                                    <source src="assets/videos/treino2.mp4" type="video/mp4">
-                                </video>
-
-                                <button type="button" aria-label="Alternar som do vídeo 02" class="manifesto-audio-btn absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-[#353535]/85 border border-white/20 flex items-center justify-center text-pure-white hover:bg-[#3B4A37] transition-all duration-300">
-                                    <i class="manifesto-audio-icon fa-solid fa-volume-xmark text-[10px]"></i>
-                                </button>
-                            </div>
-
-                            <div class="pt-2.5 pb-0.5 px-1 flex items-center justify-between gap-2">
-                                <p class="font-euro text-[10px] font-bold uppercase tracking-[0.18em] text-pure-white/90" data-i18n-pt="02 // PALCO NATURAL WNBF PRO" data-i18n-en="02 // NATURAL STAGE WNBF PRO">
-                                    02 // PALCO NATURAL WNBF PRO
+                            <div class="pt-3 pb-0.5 px-1 flex items-center justify-between gap-2">
+                                <p class="font-euro text-[10px] font-bold uppercase tracking-[0.18em] text-pure-white/90" data-i18n-pt="MANIFESTO // THIS IS HOW WE WORK." data-i18n-en="MANIFESTO // THIS IS HOW WE WORK.">
+                                    MANIFESTO // THIS IS HOW WE WORK.
                                 </p>
                                 <span class="w-1.5 h-1.5 rounded-full bg-[#3B4A37] shrink-0"></span>
                             </div>
@@ -291,10 +288,10 @@
             </div>
         </section>
 
-        <section id="methodology" class="py-24 md:py-36 px-6 md:px-12 bg-white border-t border-graphite/10 relative z-20">
+        <section id="methodology" class="py-20 md:py-28 px-6 md:px-12 bg-white border-t border-graphite/10 relative z-20">
             <div class="max-w-[1400px] mx-auto">
 
-                <div class="max-w-3xl mx-auto text-center mb-16 md:mb-24 store-reveal">
+                <div class="max-w-3xl mx-auto text-center mb-14 md:mb-20 store-reveal">
                     <span class="font-euro text-charcoal text-xs font-bold uppercase tracking-[0.4em] block mb-4">
                         THIS IS HOW WE WORK.
                     </span>
@@ -306,7 +303,7 @@
                     </p>
                 </div>
 
-                <div class="mb-20">
+                <div class="mb-12 md:mb-14">
                     <div class="flex items-center gap-4 mb-8">
                         <span class="w-8 h-[2px] bg-charcoal"></span>
                         <h3 class="font-euro-extd text-xs md:text-sm uppercase tracking-[0.3em] text-graphite" data-i18n-pt="OS 3 VALORES CENTRAIS DA MARCA" data-i18n-en="THE 3 CORE BRAND VALUES">
@@ -362,56 +359,13 @@
                     </div>
                 </div>
 
-                <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <span class="w-8 h-[2px] bg-charcoal"></span>
-                        <h3 class="font-euro-extd text-xs md:text-sm uppercase tracking-[0.3em] text-graphite" data-i18n-pt="OS 4 PILARES DO PROCESSO" data-i18n-en="THE 4 PILLARS OF THE PROCESS">
-                            OS 4 PILARES DO PROCESSO
-                        </h3>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="store-reveal p-6 border border-graphite/15 rounded-sm bg-pure-white hover:border-charcoal transition-colors">
-                            <span class="font-euro text-[10px] font-bold uppercase tracking-[0.3em] text-charcoal block mb-2" data-i18n-pt="01 // ACESSÍVEL" data-i18n-en="01 // ACCESSIBLE">01 // ACESSÍVEL</span>
-                            <h4 class="font-euro-extd text-base italic uppercase text-graphite mb-3" data-i18n-pt="Clareza e Calma" data-i18n-en="Clarity &amp; Calm">Clareza e Calma</h4>
-                            <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Comunicação transparente desde o primeiro contacto, criando confiança real sem exageros nem promessas milagrosas." data-i18n-en="Transparent communication from first contact, building real trust without exaggeration or miracle promises.">
-                                Comunicação transparente desde o primeiro contacto, criando confiança real sem exageros nem promessas milagrosas.
-                            </p>
-                        </div>
-
-                        <div class="store-reveal p-6 border border-graphite/15 rounded-sm bg-pure-white hover:border-charcoal transition-colors" style="transition-delay: 100ms;">
-                            <span class="font-euro text-[10px] font-bold uppercase tracking-[0.3em] text-charcoal block mb-2" data-i18n-pt="02 // LÚCIDO" data-i18n-en="02 // LUCID">02 // LÚCIDO</span>
-                            <h4 class="font-euro-extd text-base italic uppercase text-graphite mb-3" data-i18n-pt="Ciência Fundamentada" data-i18n-en="Grounded Science">Ciência Fundamentada</h4>
-                            <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Linguagem direta que explica o porquê de cada ajuste de treino ou nutrição, sem complicar nem confundir." data-i18n-en="Direct language explaining the 'why' behind every training or nutrition adjustment, without overcomplicating.">
-                                Linguagem direta que explica o porquê de cada ajuste de treino ou nutrição, sem complicar nem confundir.
-                            </p>
-                        </div>
-
-                        <div class="store-reveal p-6 border border-graphite/15 rounded-sm bg-pure-white hover:border-charcoal transition-colors" style="transition-delay: 200ms;">
-                            <span class="font-euro text-[10px] font-bold uppercase tracking-[0.3em] text-charcoal block mb-2" data-i18n-pt="03 // PROFISSIONAL" data-i18n-en="03 // PROFESSIONAL">03 // PROFISSIONAL</span>
-                            <h4 class="font-euro-extd text-base italic uppercase text-graphite mb-3" data-i18n-pt="Consistência e Método" data-i18n-en="Consistency &amp; Method">Consistência e Método</h4>
-                            <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Foco total no progresso mensurável, valorizando a regularidade e a adaptação contínua às necessidades de cada fase." data-i18n-en="Total focus on measurable progress, valuing consistency and continuous adaptation to each phase's needs.">
-                                Foco total no progresso mensurável, valorizando a regularidade e a adaptação contínua às necessidades de cada fase.
-                            </p>
-                        </div>
-
-                        <div class="store-reveal p-6 border border-graphite/15 rounded-sm bg-pure-white hover:border-charcoal transition-colors" style="transition-delay: 300ms;">
-                            <span class="font-euro text-[10px] font-bold uppercase tracking-[0.3em] text-charcoal block mb-2" data-i18n-pt="04 // CONFIANTE" data-i18n-en="04 // CONFIDENT">04 // CONFIANTE</span>
-                            <h4 class="font-euro-extd text-base italic uppercase text-graphite mb-3" data-i18n-pt="Autonomia a Longo Prazo" data-i18n-en="Long-Term Autonomy">Autonomia a Longo Prazo</h4>
-                            <p class="font-euro text-battleship text-xs leading-relaxed" data-i18n-pt="Passos claros que educam o aluno, promovendo disciplina própria e resultados sustentáveis para toda a vida." data-i18n-en="Clear steps that educate the athlete, promoting self-discipline and sustainable lifelong results.">
-                                Passos claros que educam o aluno, promovendo disciplina própria e resultados sustentáveis para toda a vida.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 p-6 md:p-8 bg-charcoal text-pure-white rounded-sm flex flex-col md:flex-row items-center justify-between gap-6 store-reveal">
-                        <p class="font-euro-extd italic text-sm md:text-lg uppercase tracking-wide leading-relaxed max-w-3xl" data-i18n-pt="&ldquo;Ter direção não significa ter certezas, significa saber qual o próximo passo útil. E está tudo bem com isso.&rdquo;" data-i18n-en="&ldquo;Having direction does not mean having certainties; it means knowing the next useful step. And that is completely fine.&rdquo;">
-                            &ldquo;Ter direção não significa ter certezas, significa saber qual o próximo passo útil. E está tudo bem com isso.&rdquo;
-                        </p>
-                        <a href="#final-cta" class="shrink-0 px-6 py-3 bg-pure-white text-graphite font-euro-extd text-xs uppercase tracking-[0.2em] hover:bg-graphite hover:text-pure-white transition-colors rounded-sm" data-i18n-pt="DAR DIREÇÃO AO PROCESSO" data-i18n-en="GIVE DIRECTION TO YOUR PROCESS">
-                            DAR DIREÇÃO AO PROCESSO
-                        </a>
-                    </div>
+                <div class="p-6 md:p-8 bg-charcoal text-pure-white rounded-sm flex flex-col md:flex-row items-center justify-between gap-6 store-reveal">
+                    <p class="font-euro-extd italic text-sm md:text-lg uppercase tracking-wide leading-relaxed max-w-3xl" data-i18n-pt="&ldquo;Ter direção não significa ter certezas, significa saber qual o próximo passo útil. E está tudo bem com isso.&rdquo;" data-i18n-en="&ldquo;Having direction does not mean having certainties; it means knowing the next useful step. And that is completely fine.&rdquo;">
+                        &ldquo;Ter direção não significa ter certezas, significa saber qual o próximo passo útil. E está tudo bem com isso.&rdquo;
+                    </p>
+                    <a href="#final-cta" class="shrink-0 px-6 py-3 bg-pure-white text-graphite font-euro-extd text-xs uppercase tracking-[0.2em] hover:bg-graphite hover:text-pure-white transition-colors rounded-sm" data-i18n-pt="DAR DIREÇÃO AO PROCESSO" data-i18n-en="GIVE DIRECTION TO YOUR PROCESS">
+                        DAR DIREÇÃO AO PROCESSO
+                    </a>
                 </div>
 
             </div>
@@ -441,10 +395,10 @@
 
             <div id="photo-mask" class="relative z-10 w-full h-full flex items-center justify-center">
                 <div class="relative w-full h-full overflow-hidden bg-aluminium">
-                    <img id="main-img" src="assets/img/sequeira/DSCF0648-13.jpg" decoding="async" class="w-full h-full object-cover grayscale opacity-90 scale-110 mix-blend-multiply" alt="Diogo Sequeira em Ação">
+                    <img id="main-img" src="assets/img/sequeira/DSCF0648-13.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover grayscale opacity-90 scale-110 mix-blend-multiply" alt="Diogo Sequeira em Ação">
                     <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
                         <div class="logo-wipe-reveal w-[25%] md:w-[15%]" style="clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); opacity: 0.95;">
-                            <img src="assets/img/logos/simboloverde.svg" decoding="async" class="brand-mark-official w-full object-contain" alt="Símbolo Oficial .S">
+                            <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official w-full object-contain" alt="Símbolo Oficial .S">
                         </div>
                     </div>
                 </div>
@@ -715,126 +669,45 @@
             </div>
         </section>
 
-        <section id="vision-reveal" class="relative h-screen w-full bg-[#3B4A37] flex items-center justify-center overflow-hidden border-t border-white/10 z-20">
+        <section id="vision-reveal" class="relative min-h-screen w-full bg-[#3B4A37] py-20 md:py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-t border-white/10 z-20">
             <div class="noise-overlay"></div>
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                 <h2 class="text-[15vw] font-euro-extd italic leading-none text-pure-white/5 uppercase tracking-tighter mix-blend-overlay" data-i18n-pt="PROPÓSITO" data-i18n-en="PURPOSE">PROPÓSITO</h2>
             </div>
-            <div id="vision-img-wrapper" class="relative z-10 w-full h-[60vh] md:w-[60vw] md:h-[70vh] flex items-center justify-center overflow-hidden border border-pure-white/15 group cursor-crosshair bg-graphite">
-                <img id="vision-img" src="assets/img/sequeira/DSCF7435-10.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover scale-110 grayscale contrast-125 brightness-50 group-hover:grayscale-0 group-hover:contrast-125 group-hover:brightness-105 group-hover:saturate-150 group-hover:scale-100 transition-all duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Sessão Fotográfica Diogo Sequeira">
-                <div class="absolute top-5 left-5 z-20 bg-[#353535]/85 px-3 py-2 rounded-sm border border-pure-white/15">
-                    <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official h-[20px]" alt=".S">
-                </div>
-                <div class="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background: radial-gradient(circle, transparent 60%, rgba(53,53,53,0.6) 100%);"></div>
-            </div>
-            <div id="vision-ui-badge" class="absolute z-20 bottom-10 left-6 right-6 md:left-auto md:bottom-16 md:right-16 max-w-lg px-6 py-4 bg-[#353535]/90 backdrop-blur-md border border-white/20 rounded-sm opacity-0 translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none">
-                <p class="font-euro text-pure-white text-xs md:text-sm leading-relaxed font-medium" data-i18n-pt="&ldquo;A tua causa revela-se quando te perguntas: ‘O que não consigo abandonar sem me sentir inferior?’&rdquo;" data-i18n-en="&ldquo;Your cause reveals itself when you ask: ‘What can I not abandon without feeling less than myself?’&rdquo;">
-                    &ldquo;A tua causa revela-se quando te perguntas: ‘O que não consigo abandonar sem me sentir inferior?’&rdquo;
-                </p>
-            </div>
-        </section>
 
-        <section id="achievements" class="bg-[#ADADAD] py-32 md:py-48 px-6 md:px-12 relative z-20 border-t border-pure-white/10 overflow-hidden">
-            <div class="noise-overlay"></div>
-            <div class="max-w-[1600px] mx-auto relative z-10">
-                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-12">
-                    <div class="relative">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-[1px] bg-charcoal"></div>
-                            <p class="font-euro text-graphite text-[10px] md:text-[12px] font-black uppercase tracking-[0.5em]" data-i18n-pt="Percurso Competitivo // WNBF Pro" data-i18n-en="Competitive Journey // WNBF Pro">Percurso Competitivo // WNBF Pro</p>
-                        </div>
-                        <h2 class="text-6xl md:text-[7.5rem] font-euro-extd italic leading-[0.88] uppercase tracking-tighter text-pure-white relative z-10" data-i18n-pt="PRÁTICA <br><span class='text-charcoal'>COMPROVADA</span>" data-i18n-en="PROVEN <br><span class='text-charcoal'>PRACTICE</span>">
-                            WNBF <br><span class="text-charcoal">Belgium</span>
-                        </h2>
+            <div class="relative z-10 max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                <div class="lg:col-span-5 flex flex-col justify-center gap-4 store-reveal">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-[1px] bg-pure-white/60"></div>
+                        <h3 class="font-euro text-pure-white/85 text-[10px] md:text-xs font-black uppercase tracking-[0.4em]" data-i18n-pt="HISTÓRIA &amp; CONQUISTA // ESTATUTO WNBF PRO" data-i18n-en="STORY &amp; ACHIEVEMENT // WNBF PRO STATUS">
+                            HISTÓRIA &amp; CONQUISTA // ESTATUTO WNBF PRO
+                        </h3>
                     </div>
-                    <div class="max-w-md lg:pb-4">
-                        <p class="font-euro text-graphite text-xs md:text-sm leading-relaxed border-l-2 border-charcoal pl-6 font-medium" data-i18n-pt="Cada palco representa anos de consistência, estudo e respeito pelo processo natural. O conhecimento teórico das Ciências do Desporto validado na prática competitiva internacional." data-i18n-en="Every stage represents years of consistency, study, and respect for the natural process. Theoretical Sports Science knowledge validated in international competitive practice.">
-                            Cada palco representa anos de consistência, estudo e respeito pelo processo natural. O conhecimento teórico das Ciências do Desporto validado na prática competitiva internacional.
+
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-euro-extd italic leading-[0.95] uppercase tracking-tighter text-pure-white" data-i18n-pt="A CONQUISTA DO <br><span class='text-graphite'>PRO CARD.</span>" data-i18n-en="EARNING THE <br><span class='text-graphite'>PRO CARD.</span>">
+                        A CONQUISTA DO <br><span class="text-graphite">PRO CARD.</span>
+                    </h2>
+
+                    <p class="font-euro text-pure-white/90 text-xs md:text-sm leading-relaxed border-l-2 border-graphite pl-5" data-i18n-pt="A conquista do Pro Card na World Natural Bodybuilding Federation (WNBF) é o culminar de anos de consistência silenciosa, estudo académico na FMH ULisboa e respeito inegociável pelo processo natural." data-i18n-en="Earning the Pro Card in the World Natural Bodybuilding Federation (WNBF) is the culmination of years of silent consistency, academic study at FMH ULisboa, and unwavering respect for the natural process.">
+                        A conquista do Pro Card na World Natural Bodybuilding Federation (WNBF) é o culminar de anos de consistência silenciosa, estudo académico na FMH ULisboa e respeito inegociável pelo processo natural.
+                    </p>
+
+                    <p class="font-euro text-pure-white/80 text-xs md:text-sm leading-relaxed" data-i18n-pt="Cada preparação exigiu precisão biomecânica, gestão rigorosa de variáveis nutricionais e resiliência mental. Este estatuto profissional comprova, em palco internacional, o método que hoje aplico no acompanhamento de cada aluno." data-i18n-en="Every contest prep demanded biomechanical precision, strict management of nutritional variables, and mental resilience. This pro status proves, on an international stage, the method I now apply to every client.">
+                        Cada preparação exigiu precisão biomecânica, gestão rigorosa de variáveis nutricionais e resiliência mental. Este estatuto profissional comprova, em palco internacional, o método que hoje aplico no acompanhamento de cada aluno.
+                    </p>
+
+                    <div id="vision-ui-badge" class="mt-2 px-6 py-4 bg-[#353535]/90 backdrop-blur-md border border-white/20 rounded-sm">
+                        <p class="font-euro text-pure-white text-xs md:text-sm leading-relaxed font-medium" data-i18n-pt="&ldquo;A tua causa revela-se quando te perguntas: ‘O que não consigo abandonar sem me sentir inferior?’&rdquo;" data-i18n-en="&ldquo;Your cause reveals itself when you ask: ‘What can I not abandon without feeling less than myself?’&rdquo;">
+                            &ldquo;A tua causa revela-se quando te perguntas: ‘O que não consigo abandonar sem me sentir inferior?’&rdquo;
                         </p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[350px]">
-                    <div class="achiev-card md:row-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_01.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="WNBF Pro Card Fotografia">
-                        <div class="absolute top-4 right-4 z-20 bg-[#353535]/80 px-2.5 py-1.5 rounded-sm">
-                            <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official h-[19px]" alt=".S">
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Conquista" data-i18n-en="Achievement">Conquista</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">WNBF Pro Card</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_03.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Foco em Palco">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Foco" data-i18n-en="Focus">Foco</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Stage Execution</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_04.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Pro Status Celebração">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Reconhecimento" data-i18n-en="Recognition">Reconhecimento</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">WNBF Pro Status</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card md:row-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_05.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Natural Stage Alinhamento">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Alinhamento" data-i18n-en="Lineup">Alinhamento</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Natural Stage</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card md:col-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_08.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Belgian Cup Conquista">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Competição Internacional" data-i18n-en="International Competition">Competição Internacional</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Belgian Cup</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/champ_06.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Medalhas de Ouro">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Campeão" data-i18n-en="Champion">Campeão</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Gold Medals</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card md:col-span-2 relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/PHOTO-2026-05-19-08-14-07.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_20%] grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Linha de Comparação Geral">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Comparação" data-i18n-en="Comparison">Comparação</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Overall Lineup</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="achiev-card relative group overflow-hidden bg-graphite border border-pure-white/10 cursor-pointer rounded-sm">
-                        <img src="assets/img/sequeira/PHOTO-2026-05-19-08-14-07 2.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover object-center grayscale brightness-75 group-hover:brightness-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Equipa Vencedora">
-                        <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 overflow-hidden pointer-events-none">
-                            <div class="translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] delay-100">
-                                <p class="font-euro text-pure-white text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold mb-1 opacity-80" data-i18n-pt="Comunidade" data-i18n-en="Community">Comunidade</p>
-                                <p class="font-euro-extd text-xl md:text-3xl text-pure-white italic uppercase tracking-tighter mb-3">Team Sequeira</p>
-                            </div>
+                <div class="lg:col-span-7 flex justify-center lg:justify-end w-full">
+                    <div id="vision-img-wrapper" class="relative z-10 w-full h-[60vh] md:w-[60vw] lg:w-full lg:max-w-[560px] md:h-[70vh] flex items-center justify-center overflow-hidden border border-pure-white/15 group cursor-crosshair bg-graphite">
+                        <img id="vision-img" src="assets/img/sequeira/champ_06.jpg" loading="lazy" decoding="async" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]" alt="Diogo Sequeira Campeão WNBF Pro">
+                        <div class="absolute top-5 left-5 z-20 bg-[#353535]/85 px-3 py-2 rounded-sm border border-pure-white/15">
+                            <img src="assets/img/logos/simboloverde.svg" loading="lazy" decoding="async" class="brand-mark-official h-[20px]" alt=".S">
                         </div>
                     </div>
                 </div>

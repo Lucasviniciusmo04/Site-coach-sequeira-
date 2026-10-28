@@ -205,7 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: 'Refinamento de proporções, linha de cintura compacta e uma condição física extrema alcançada sem atalhos.'
         },
         {
-            img: 'assets/img/sequeira/champ_01.jpg',
+            img: 'assets/img/sequeira/champ_06.jpg',
+            alt: 'Diogo Sequeira Campeão WNBF Pro com Troféu',
+            pos: 'object-[center_18%]',
             phase: 'FASE 05 / ELITE PRO',
             title: 'Estatuto WNBF Pro',
             desc: 'O culminar de anos de jogo longo: conquista do Pro Card e consolidação na elite mundial do culturismo natural.'
@@ -229,9 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const imgEl = document.createElement('img');
             imgEl.src = item.img;
-            imgEl.alt = `${item.phase} - ${item.title}`;
+            imgEl.alt = item.alt || `${item.phase} - ${item.title}`;
+            imgEl.loading = 'lazy';
             imgEl.decoding = 'async';
-            imgEl.className = 'evo-slide-img absolute inset-0 w-full h-full object-cover object-center transform-gpu will-change-transform';
+            imgEl.className = `evo-slide-img absolute inset-0 w-full h-full object-cover ${item.pos || 'object-center'} transform-gpu will-change-transform`;
             imgEl.style.zIndex = index + 1;
             imagesStack.appendChild(imgEl);
 
@@ -455,30 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 6. ACHIEVEMENTS VERTICAL PARALLAX (#achievements — scrub: true, force3D: true)
-    const achievCards = gsap.utils.toArray('.achiev-card');
-    if (achievCards.length > 0) {
-        achievCards.forEach((card, index) => {
-            const speed = index % 2 === 0 ? -60 : -20;
-            gsap.fromTo(
-                card,
-                { y: 30 },
-                {
-                    y: speed,
-                    ease: 'none',
-                    force3D: true,
-                    scrollTrigger: {
-                        trigger: '#achievements',
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: true
-                    }
-                }
-            );
-        });
-    }
-
-    // 7. TELEMETRY CARDS STAGGER (#athlete-telemetry — force3D: true)
+    // 6. TELEMETRY CARDS STAGGER (#athlete-telemetry — force3D: true)
     const telemetryCards = gsap.utils.toArray('#athlete-telemetry .telemetry-card');
     if (telemetryCards.length > 0) {
         gsap.fromTo(
